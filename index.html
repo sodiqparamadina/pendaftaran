@@ -15,7 +15,7 @@
         transform: translate(-50%);
         padding: 20px;
         max-width: 800px;
-        min-width: 400px;
+        min-width: 320px;
         border: 1px solid #ddd;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -174,7 +174,9 @@
           <option value="influencer">Jalur Influencer</option>
           <option value="non-akademik">Jalur Prestasi Non Akademik</option>
           <option value="tahfidz">Jalur Tahfidz Alquran</option>
-          <option value="tpa">Jalur Tes Potensi Akademik (TPA) - Reguler</option>
+          <option value="tpa">
+            Jalur Tes Potensi Akademik (TPA) - Reguler
+          </option>
           <option value="rapor">Jalur Nilai Rapor</option>
           <option value="utbk">Jalur Skor UTBK</option>
           <option value="" disabled>-- Jalur Khusus--</option>
@@ -186,11 +188,15 @@
       <div class="card-container">
         <div class="card hidden" id="card-container">
           <h3>
-            <span class="jenjang-dipilih"></span> <!--  S1/S2 -->
-            <span class="kelas-dipilih"></span> <!-- Kelas A/B/C/D -->
-            ( <span class="jam-dipilih"></span> ) <!-- 09.45 - 18.00 WIB -->
+            <span class="jenjang-dipilih"></span>
+            <!--  S1/S2 -->
+            <span class="kelas-dipilih"></span>
+            <!-- Kelas A/B/C/D -->
+            ( <span class="jam-dipilih"></span> )
+            <!-- 09.45 - 18.00 WIB -->
             -
-            <span id="jalur-dipilih"></span> <!-- Jalur Masuk -->
+            <span id="jalur-dipilih"></span>
+            <!-- Jalur Masuk -->
           </h3>
           <p>
             Waktu Perkuliahan:
@@ -203,11 +209,14 @@
             <span class="kelas-dipilih"></span>
           </span>
           <div class="info">
-            <span><i class="calendar-icon"></i> 7 Oktober 2024 - 27 Juni 2025</span>
+            <span
+              ><i class="calendar-icon"></i> 7 Oktober 2024 - 27 Juni 2025</span
+            >
             <span class="fee">Biaya Daftar <b>Rp. 300.000</b></span>
           </div>
           <button class="register-btn">Daftar Sekarang</button>
         </div>
+      </div>
     </form>
 
     <script>
@@ -340,18 +349,22 @@
           } else {
             jenisPendaftaranContainer.addClass("hidden");
           }
-          
+
           $("#waktu-perkuliahan-container").addClass("hidden");
           jenisPendaftaran.val("");
           $("#waktu-perkuliahan option[data-jenis='kelas-b']").show();
           $("#waktu-perkuliahan option[data-jenis='kelas-d']").show();
 
-          if ((programStudi === "psikologi" || programStudi === "ilmu komunikasi" || 
-               programStudi === "hubungan internasional" || programStudi === "manajemen") && 
-               lokasiKampus === "kuningan") {
-            $("#jenis-pendaftaran option[value='pindahan']").hide(); 
+          if (
+            (programStudi === "psikologi" ||
+              programStudi === "ilmu komunikasi" ||
+              programStudi === "hubungan internasional" ||
+              programStudi === "manajemen") &&
+            lokasiKampus === "kuningan"
+          ) {
+            $("#jenis-pendaftaran option[value='pindahan']").hide();
           } else {
-            $("#jenis-pendaftaran option[value='pindahan']").show(); 
+            $("#jenis-pendaftaran option[value='pindahan']").show();
           }
 
           $(
@@ -372,7 +385,11 @@
             waktuPerkuliahanContainer.removeClass("hidden");
 
             // INI BELUM FIX
-            if (programStudi === "psikologi" && lokasiKampus === "cipayung" && jenisPendaftaran === "baru") {
+            if (
+              programStudi === "psikologi" &&
+              lokasiKampus === "cipayung" &&
+              jenisPendaftaran === "baru"
+            ) {
               $("#waktu-perkuliahan option[data-jenis='kelas-b']").hide();
               $("#waktu-perkuliahan option[data-jenis='kelas-d']").hide();
             } else {
@@ -397,14 +414,11 @@
               $("#waktu-perkuliahan option[data-jenis='kelas-c']").show();
               $("#waktu-perkuliahan option[data-jenis='kelas-d']").show();
             }
-
           } else {
             waktuPerkuliahanContainer.addClass("hidden");
           }
 
-          $(
-            "#jalur-masuk-container, #card-container"
-          ).addClass("hidden");
+          $("#jalur-masuk-container, #card-container").addClass("hidden");
           $("#waktu-perkuliahan").val("");
           $("#jalur-masuk").val("");
         });
@@ -428,7 +442,9 @@
           // Logika 1: Alih Jenjang
           if (
             jenisPendaftaran === "alih-jenjang" &&
-            (waktuPerkuliahan === "kelas-b" || waktuPerkuliahan === "kelas-c" || waktuPerkuliahan === "kelas-d")
+            (waktuPerkuliahan === "kelas-b" ||
+              waktuPerkuliahan === "kelas-c" ||
+              waktuPerkuliahan === "kelas-d")
           ) {
             $("#jalur-masuk option[value='influencer']").hide();
             $("#jalur-masuk option[value='kip']").hide();
@@ -440,7 +456,10 @@
           }
 
           // Logika 2: Pindahan
-          if (jenisPendaftaran === "pindahan" && waktuPerkuliahan === "kelas-a") {
+          if (
+            jenisPendaftaran === "pindahan" &&
+            waktuPerkuliahan === "kelas-a"
+          ) {
             $("#jalur-masuk option[value='influencer']").hide();
             $("#jalur-masuk option[value='kip']").hide();
             $("#jalur-masuk option[value='non-akademik']").hide();
@@ -452,7 +471,9 @@
 
           // Logika 3: Baru
           if (
-            (waktuPerkuliahan === "kelas-b" || waktuPerkuliahan === "kelas-c" || waktuPerkuliahan === "kelas-d") &&
+            (waktuPerkuliahan === "kelas-b" ||
+              waktuPerkuliahan === "kelas-c" ||
+              waktuPerkuliahan === "kelas-d") &&
             jenisPendaftaran === "baru"
           ) {
             $("#jalur-masuk option[value='influencer']").hide();
@@ -463,9 +484,7 @@
           }
 
           // Reset nilai jalur masuk
-          $(
-            "#card-container"
-          ).addClass("hidden");
+          $("#card-container").addClass("hidden");
           jalurMasuk.val("");
         });
 
