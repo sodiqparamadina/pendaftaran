@@ -31,22 +31,6 @@
         background-color: #ffffff;
       }
 
-      /* Medium screens (md: min-width: 768px) */
-      @media (min-width: 768px) {
-        .card-content {
-          max-width: 600px;
-          padding: 25px;
-        }
-      }
-
-      @media (min-width: 1024px) {
-        .card-content {
-          max-width: 800px;
-          padding: 30px;
-          border: 2px solid #ccc;
-        }
-      }
-
       .required {
         color: red;
       }
@@ -79,8 +63,8 @@
       }
 
       .hero-title {
+        font-size: 2rem;
         color: white;
-        font-size: 2.5rem;
         margin-bottom: 1rem;
       }
 
@@ -259,6 +243,43 @@
 
       .calendar-icon {
         margin-right: 5px;
+      }
+
+      /* Medium screens (md: min-width: 768px) */
+      @media (min-width: 768px) {
+        .card-content {
+          max-width: 600px;
+          padding: 25px;
+        }
+        .hero-title {
+          font-size: 2rem;
+          color: white;
+        }
+
+        .hero-subtitle {
+          color: white;
+          font-size: 0.5rem;
+          margin-bottom: 3rem;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .card-content {
+          max-width: 800px;
+          padding: 30px;
+          border: 2px solid #ccc;
+        }
+
+        .hero-title {
+          font-size: 2rem;
+          color: white;
+        }
+
+        .hero-subtitle {
+          color: white;
+          font-size: 1rem;
+          margin-bottom: 3rem;
+        }
       }
     </style>
   </head>
@@ -785,11 +806,15 @@
             const waktuPerkuliahan = $(
               "input[name='waktu-perkuliahan']:checked"
             ).val();
-            const jalurMasuk = $("input[name='jalur-masuk']").val();
             const jalurMasukContainer = $("#jalur-masuk-container");
             const jenisPendaftaran = $(
               "input[name='jenis-pendaftaran']:checked"
             ).val();
+
+            // Reset semua radio button jalur masuk
+            $("input[name='jalur-masuk']")
+              .prop("checked", false)
+              .prop("disabled", false);
 
             // Tampilkan/Reset jalur-masuk-container
             if (waktuPerkuliahan) {
@@ -798,9 +823,6 @@
               jalurMasukContainer.addClass("hidden");
             }
 
-            // Reset semua opsi agar terlihat terlebih dahulu
-            $("input[name='jalur-masuk']").parent().show();
-
             // Logika 1: Alih Jenjang
             if (
               jenisPendaftaran === "alih-jenjang" &&
@@ -808,17 +830,15 @@
                 waktuPerkuliahan === "kelas-c" ||
                 waktuPerkuliahan === "kelas-d")
             ) {
-              $("input[name='jalur-masuk'][value='influencer']")
-                .parent()
-                .hide();
-              $("input[name='jalur-masuk'][value='kip']").parent().hide();
-              $("input[name='jalur-masuk'][value='non-akademik']")
-                .parent()
-                .hide();
-              $("input[name='jalur-masuk'][value='tahfidz']").parent().hide();
-              $("input[name='jalur-masuk'][value='rapor']").parent().hide();
-              $("input[name='jalur-masuk'][value='utbk']").parent().hide();
-              $("input[name='jalur-masuk'][value='kerjasama']").parent().hide();
+              disableJalurMasukOptions([
+                "influencer",
+                "kip",
+                "non-akademik",
+                "tahfidz",
+                "rapor",
+                "utbk",
+                "kerjasama",
+              ]);
             }
 
             // Logika 2: Pindahan
@@ -826,17 +846,15 @@
               jenisPendaftaran === "pindahan" &&
               waktuPerkuliahan === "kelas-a"
             ) {
-              $("input[name='jalur-masuk'][value='influencer']")
-                .parent()
-                .hide();
-              $("input[name='jalur-masuk'][value='kip']").parent().hide();
-              $("input[name='jalur-masuk'][value='non-akademik']")
-                .parent()
-                .hide();
-              $("input[name='jalur-masuk'][value='tahfidz']").parent().hide();
-              $("input[name='jalur-masuk'][value='rapor']").parent().hide();
-              $("input[name='jalur-masuk'][value='utbk']").parent().hide();
-              $("input[name='jalur-masuk'][value='kerjasama']").parent().hide();
+              disableJalurMasukOptions([
+                "influencer",
+                "kip",
+                "non-akademik",
+                "tahfidz",
+                "rapor",
+                "utbk",
+                "kerjasama",
+              ]);
             }
 
             // Logika 3: Baru
@@ -846,15 +864,13 @@
                 waktuPerkuliahan === "kelas-d") &&
               jenisPendaftaran === "baru"
             ) {
-              $("input[name='jalur-masuk'][value='influencer']")
-                .parent()
-                .hide();
-              $("input[name='jalur-masuk'][value='kip']").parent().hide();
-              $("input[name='jalur-masuk'][value='non-akademik']")
-                .parent()
-                .hide();
-              $("input[name='jalur-masuk'][value='tahfidz']").parent().hide();
-              $("input[name='jalur-masuk'][value='kerjasama']").parent().hide();
+              disableJalurMasukOptions([
+                "influencer",
+                "kip",
+                "non-akademik",
+                "tahfidz",
+                "kerjasama",
+              ]);
             }
 
             // Reset nilai jalur masuk
@@ -862,6 +878,16 @@
             $("input[name='jalur-masuk']").prop("checked", false);
           }
         );
+
+        // Fungsi untuk menonaktifkan radio button berdasarkan nilai value
+        function disableJalurMasukOptions(options) {
+          options.forEach(function (option) {
+            $(`input[name='jalur-masuk'][value='${option}']`).prop(
+              "disabled",
+              true
+            );
+          });
+        }
 
         $(document).on("change", "input[name='jalur-masuk']", function () {
           const cardContainer = $("#card-container");
@@ -871,12 +897,6 @@
             .next("label")
             .text();
           const lokasiKampus = $("input[name='lokasi-kampus']:checked").val();
-
-          console.log(jalurMasuk);
-          if (!jalurMasuk) {
-            console.error("Jalur masuk tidak dipilih!");
-            return; // Hentikan eksekusi jika jalur masuk tidak dipilih
-          }
 
           let newKelas = "";
           let jam = "";
