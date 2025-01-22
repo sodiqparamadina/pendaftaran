@@ -1,6 +1,10 @@
 <?php 
 
-header("Location: https://paramadina.siakadcloud.com/spmbfront/home");
+if($_GET['dev']){
+
+}else{
+  header("Location: https://paramadina.siakadcloud.com/spmbfront/home");
+}
 
 ?>
 <!DOCTYPE html>
