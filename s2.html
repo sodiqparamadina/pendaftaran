@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Pendaftaran S2</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0 auto;
+        position: absolute;
+        left: 50%;
+        top: 5%;
+        transform: translate(-50%);
+        padding: 20px;
+        max-width: 800px;
+        min-width: 400px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+      select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+      .hidden {
+        display: block;
+      }
+
+      .card-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .card {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .card h3 {
+        font-size: 1.2rem;
+        margin: 0 0 10px;
+      }
+
+      .card p {
+        font-size: 0.9rem;
+        color: #555;
+        margin: 0 0 15px;
+      }
+
+      .location {
+        display: inline-block;
+        background: #e9ecef;
+        padding: 5px 10px;
+        font-size: 0.8rem;
+        color: #6c757d;
+        border-radius: 4px;
+        margin-bottom: 15px;
+      }
+
+      .info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+      }
+
+      .info .fee {
+        color: #ff6f00;
+        font-weight: bold;
+      }
+
+      .register-btn {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      .register-btn:hover {
+        background-color: #0056b3;
+      }
+
+      .calendar-icon {
+        margin-right: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Form Pendaftaran S2</h1>
+
+    <form>
+      <!-- Pilih Jenjang -->
+      <label for="jenjang">Pilih Jenjang</label>
+      <select id="jenjang" name="jenjang">
+        <option value="">-- Pilih Jenjang --</option>
+        <option value="s1">Strata 1</option>
+        <option value="s2">Strata 2</option>
+      </select>
+
+      <!-- Pilih Program Studi -->
+      <div id="prodi-container" class="hidden">
+        <label for="program-studi">Pilih Program Studi</label>
+        <select id="program-studi" name="program-studi">
+          <option value="">-- Pilih Program Studi --</option>
+        </select>
+      </div>
+
+      <!-- Pilih Jenis Pendaftaran -->
+      <div id="jenis-pendaftaran-container" class="hidden">
+        <label for="jenis-pendaftaran">Jenis Pendaftaran</label>
+        <select id="jenis-pendaftaran" name="jenis-pendaftaran">
+          <option value="">-- Pilih Jenis Pendaftaran --</option>
+          <option value="baru">Peserta Didik Baru (Lulus S1)</option>
+          <option value="pindahan">Pindahan/Transfer</option>
+        </select>
+      </div>
+
+      <!-- Pilih Lokasi Kampus -->
+      <div id="lokasi-kampus-container" class="hidden">
+        <label for="lokasi-kampus">Lokasi Kampus</label>
+        <select id="lokasi-kampus" name="lokasi-kampus">
+          <option value="">-- Pilih Lokasi Kampus --</option>
+          <option value="cipayung">Cipayung</option>
+          <option value="kuningan">Kuningan</option>
+          <option value="cikarang">Cikarang</option>
+        </select>
+      </div>
+
+      <!-- Pilih Jalur Masuk -->
+      <div id="jalur-masuk-container" class="hidden">
+        <label for="jalur-masuk">Jalur Masuk</label>
+        <select id="jalur-masuk" name="jalur-masuk">
+          <option value="">-- Pilih Jalur Masuk --</option>
+          <option value="tpa">Tes Potensial Akademik</option>
+        </select>
+      </div>
+
+      <!-- Pilih Jalur Beasiswa -->
+      <div id="beasiswa-container" class="hidden" style="display: none;">
+        <label for="list-beasiswa">Jalur Beasiswa</label>
+        <select id="list-beasiswa" name="list-beasiswa">
+          <option value="">-- Pilih Jalur Beasiswa --</option>
+          <option value="influencer">Jalur Influencer</option>
+          <option value="kip">Jalur KIP</option>
+          <option value="non-akademik">Jalur Prestasi Non Akademik</option>
+          <option value="tahfidz">Jalur Tahfidz Alquran</option>
+          <option value="tpa">Jalur Tes Potensial Akademik (TPA)</option>
+          <option value="rapor">Jalur Nilai Rapor</option>
+          <option value="utbk">Jalur Skor UTBK</option>
+          <option value="kerjasama">Jalur Beasiswa Kerjasama Perusahaan</option>
+        </select>
+      </div>
+
+      <!-- Pilih Waktu Perkuliahan -->
+      <div id="waktu-perkuliahan-container" class="hidden">
+        <label for="waktu-perkuliahan">Waktu Perkuliahan</label>
+        <select id="waktu-perkuliahan" name="waktu-perkuliahan">
+          <option value="">-- Pilih Waktu Perkuliahan --</option>
+          <option value="kelas-a">Kelas A (09:45 - 18:00)</option>
+          <option value="kelas-b">Kelas B (18:30 - 21:00)</option>
+          <option value="kelas-c">
+            Kelas C (Sabtu 07:00 - 18:00) + Online Weekdays
+          </option>
+          <option value="kelas-d-sabtu" data-jenis="lama">
+            Kelas D (Sabtu 14:00 - 22:00) + Online Weekdays
+          </option>
+          <option value="kelas-d-online" data-jenis="baru">
+            Kelas D (13:00 - 22:00) + Online
+          </option>
+        </select>
+      </div>
+
+      <div>
+        <div class="card-container">
+          <!-- Card 1 -->
+          <div class="card hidden" id="card-s1-kelas-a">
+            <h3>
+              <span class="jenjang-dipilih"></span>
+              <span class="kelas-dipilih"></span> -
+              <span id="jalur-dipilih"></span>
+            </h3>
+            <p>
+              Waktu Perkuliahan: Senin - Jumat (
+              <span id="jam-dipilih"></span> ).
+            </p>
+            <span class="location">
+              ( <span id="kampus_location"></span> )
+              <span class="jenjang-dipilih"></span>
+              <span class="kelas-dipilih"></span>
+            </span>
+            <div class="info">
+              <span
+                ><i class="calendar-icon"></i> 7 Oktober 2024 - 27 Juni
+                2025</span
+              >
+              <span class="fee">Biaya Daftar <b>Rp. 300.000</b></span>
+            </div>
+            <button class="register-btn">Daftar Sekarang</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <script>
+      $(document).ready(function () {
+
+        // Data program studi berdasarkan jenjang
+        const kelasData = {
+          cipayung: [
+            "S2 Kelas B ( Sabtu Sesi Pagi Jam 07.00 - 12.15 WIB ) ",
+          ],
+          kuningan: [
+            "S2 Kelas A ( Senin s/d Kamis Jam 19.00 - 21.30 WIB ) ",
+            "S2 Kelas B ( Sabtu Sesi Pagi Jam 07.00 - 12.15 WIB ) ",
+            "S2 Kelas C ( Sabtu Sesi Siang Jam 14.00 - 19.30 WIB  ) ",
+          ],
+        };
+        
+        // Data program studi berdasarkan jenjang
+        const prodiData = {
+          s1: [
+            "Teknik Informatika",
+            "Psikologi",
+            "Desain Komunikasi Visual",
+            "Desain Produk",
+            "Ilmu Komunikasi",
+            "Hubungan Internasional",
+            "Falsafah dan Agama",
+            "Manajemen",
+          ],
+          s2: [
+            "S2 - Psikologi",
+            "S2 - Ilmu Hubungan Internasional",
+            "S2 - Ilmu Komunikasi",
+            "S2 - Manajemen",
+            "S2 - Ilmu Agama Islam",
+          ],
+        };
+
+        // Event saat dropdown jenjang berubah
+        $("#jenjang").change(function () {
+          const jenjang = $(this).val();
+          const prodiSelect = $("#program-studi");
+
+          // Reset semua dropdown berikutnya
+          prodiSelect.empty();
+          prodiSelect.append(
+            '<option value="">-- Pilih Program Studi --</option>'
+          );
+          $(
+            "#jenis-pendaftaran-container, #lokasi-kampus-container, #jalur-masuk-container, #beasiswa-container, #waktu-perkuliahan-container"
+          ).addClass("hidden");
+          $("#jenis-pendaftaran").val("");
+          $("#lokasi-kampus").val("");
+          $("#jalur-masuk").val("");
+          $("#list-beasiswa").val("");
+          $("#waktu-perkuliahan").val("");
+
+          // Tampilkan dropdown program studi sesuai jenjang
+          if (jenjang && prodiData[jenjang]) {
+            prodiData[jenjang].forEach(function (prodi) {
+              prodiSelect.append(
+                `<option value="${prodi.toLowerCase()}">${prodi}</option>`
+              );
+            });
+            $("#prodi-container").removeClass("hidden");
+          } else {
+            $("#prodi-container").addClass("hidden");
+          }
+        });
+
+        // Event saat dropdown program studi berubah
+        $("#program-studi").change(function () {
+          if ($(this).val()) {
+            $("#jenis-pendaftaran-container").removeClass("hidden");
+          } else {
+            $(
+              "#jenis-pendaftaran-container, #lokasi-kampus-container, #jalur-masuk-container, #beasiswa-container, #waktu-perkuliahan-container"
+            ).addClass("hidden");
+            $("#jenis-pendaftaran").val("");
+            $("#lokasi-kampus").val("");
+            $("#jalur-masuk").val("");
+            $("#list-beasiswa").val("");
+            $("#waktu-perkuliahan").val("");
+          }
+        });
+
+        // Event saat dropdown jenis pendaftaran berubah
+        $("#jenis-pendaftaran").change(function () {
+          const jenisPendaftaran = $(this).val();
+          if (jenisPendaftaran) {
+            $("#lokasi-kampus-container").removeClass("hidden");
+            const jalurMasukSelect = $("#jalur-masuk");
+            // Tampilkan/hide opsi beasiswa
+            if (jenisPendaftaran === "baru") {
+              jalurMasukSelect.find("option[value='beasiswa']").show();
+            } else {
+              jalurMasukSelect.find("option[value='beasiswa']").hide();
+            }
+          } else {
+            $(
+              "#lokasi-kampus-container, #jalur-masuk-container, #beasiswa-container, #waktu-perkuliahan-container"
+            ).addClass("hidden");
+            $("#lokasi-kampus").val("");
+            $("#jalur-masuk").val("");
+            $("#list-beasiswa").val("");
+            $("#waktu-perkuliahan").val("");
+          }
+        });
+
+        // Event saat dropdown lokasi kampus berubah
+        $("#lokasi-kampus").change(function () {
+          if ($(this).val()) {
+            $("#jalur-masuk-container").removeClass("hidden");
+          } else {
+            $(
+              "#jalur-masuk-container, #beasiswa-container, #waktu-perkuliahan-container"
+            ).addClass("hidden");
+            $("#jalur-masuk").val("");
+            $("#list-beasiswa").val("");
+            $("#waktu-perkuliahan").val("");
+          }
+        });
+
+        // Event saat dropdown jalur masuk berubah
+        $("#jalur-masuk").change(function () {
+          const jalurMasuk = $(this).val();
+          const jenisPendaftaran = $("#jenis-pendaftaran").val();
+
+          // Reset beasiswa, waktu perkuliahan, dan opsi mahasiswa
+          $("#list-beasiswa").val("");
+          $(
+            "#beasiswa-container, #waktu-perkuliahan-container, #mahasiswa-container"
+          ).addClass("hidden");
+          $("#waktu-perkuliahan").val("");
+
+          if (jalurMasuk === "beasiswa") {
+            // Jika jalur masuk beasiswa, tampilkan opsi mahasiswa
+            $("#beasiswa-container").removeClass("hidden");
+          } else if (jalurMasuk === "reguler") {
+            // Jika jalur masuk reguler, tampilkan waktu perkuliahan
+            $("#waktu-perkuliahan-container").removeClass("hidden");
+          }
+        });
+
+        // Event saat dropdown jenis pendaftaran berubah
+        $("#jenis-pendaftaran").change(function () {
+          const jenisPendaftaran = $(this).val();
+          const jalurMasuk = $("#jalur-masuk").val();
+
+          // Perbarui tampilan opsi waktu perkuliahan
+          if (jenisPendaftaran === "baru") {
+            // Jika peserta didik baru, tampilkan opsi Kelas D (13:00 - 22:00) + Online
+            $("#waktu-perkuliahan option[data-jenis='baru']").show();
+            $("#waktu-perkuliahan option[data-jenis='lama']").hide();
+          } else {
+            // Jika bukan peserta didik baru, sembunyikan opsi Kelas D (13:00 - 22:00) + Online
+            $("#waktu-perkuliahan option[data-jenis='baru']").hide();
+            $("#waktu-perkuliahan option[data-jenis='lama']").show();
+          }
+
+          // Tampilkan waktu perkuliahan jika jalur masuk reguler
+          if (jalurMasuk === "reguler") {
+            $("#waktu-perkuliahan-container").removeClass("hidden");
+          } else {
+            $("#waktu-perkuliahan-container").addClass("hidden");
+          }
+        });
+
+        // Event saat dropdown beasiswa berubah
+        $("#list-beasiswa").change(function () {
+          if ($(this).val()) {
+            $("#waktu-perkuliahan-container").removeClass("hidden");
+          } else {
+            $("#waktu-perkuliahan-container").addClass("hidden");
+          }
+        });
+
+        $("#waktu-perkuliahan").change(function () {
+          const kelas = $(this).val();
+          const kelasText = $("#waktu-perkuliahan option:selected").text();
+          const kampusLocation = $("#lokasi-kampus").val();
+          const kampusLocationText = $("#lokasi-kampus option:selected").text();
+          const beasiswa = $("#list-beasiswa").val();
+          const beasiswaText = $("#list-beasiswa option:selected").text();
+          const jenjang = $("#jenjang").val();
+          const jalurPendaftaran = $("#jalur-pendaftaran").val();
+          const jenisPendaftaranText = $(
+            "#jenis-pendaftaran option:selected"
+          ).text();
+          const jenisPendaftaran = $("#jenis-pendaftaran").val();
+          const jalurMasuk = $("#jalur-masuk").val();
+          const jalurMasukText = $("#jalur-masuk option:selected").text();
+
+          $("#card-s1-kelas-a").removeClass("hidden");
+          $(".jenjang-dipilih").text(capitalizeFirstLetter(jenjang));
+          $(".kelas-dipilih").text(capitalizeFirstLetter(kelasText));
+
+          if (kelas === "kelas-a") {
+            $("#jam-dipilih").text("09.45 - 18.00 WIB");
+          } else if (kelas === "kelas-b") {
+            $("#jam-dipilih").text("18.30 - 21.00 WIB");
+          } else {
+            $("#jam-dipilih").text("-");
+          }
+
+          $("#jalur-dipilih").text(beasiswaText);
+          $("#kampus_location").text(kampusLocationText);
+        });
+
+        function capitalizeFirstLetter(text) {
+          // Split teks menjadi array berdasarkan tanda titik (akhir kalimat)
+          const sentences = text.split(".").map((sentence) => {
+            // Trim untuk menghapus spasi berlebih di awal dan akhir kalimat
+            sentence = sentence.trim();
+            // Jika kalimat tidak kosong, ubah huruf pertama menjadi huruf besar
+            return sentence.length > 0
+              ? sentence[0].toUpperCase() + sentence.slice(1)
+              : "";
+          });
+
+          // Gabungkan kembali kalimat dengan tanda titik
+          return sentences.join(". ");
+        }
+      });
+    </script>
+  </body>
+</html>
