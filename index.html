@@ -13,15 +13,24 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
       * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
         font-family: "Poppins", sans-serif;
       }
 
       body {
         background-color: #f9f9f9f9;
+        margin: 0; /* Reset margin */
+        padding: 0; /* Reset padding */
       }
 
       .card-content {
-        margin: 30px auto;
+        margin: 0 20px; /* Tambahkan margin kiri-kanan */
+        width: auto; /* Biarkan width menyesuaikan dengan margin */
+        max-width: calc(
+          100% - 40px
+        ); /* Maximum width dikurangi margin kiri-kanan */
         position: relative;
         padding: 20px;
         top: -140px;
@@ -63,23 +72,25 @@
       }
 
       .hero-title {
-        font-size: 2rem;
+        font-size: 20px;
         color: white;
         margin-bottom: 1rem;
       }
 
       .hero-subtitle {
         color: white;
-        font-size: 1.1rem;
+        font-size: 12px;
         margin-bottom: 3rem;
       }
 
-      .text-gelomang {
+      .text-gelombang {
+        font-size: 40px;
         margin-top: -10px;
       }
 
       .text-semester {
-        margin-top: -25px;
+        /* margin-top: -25px; */
+        margin-bottom: 20px;
       }
 
       .form-input {
@@ -248,9 +259,11 @@
       /* Medium screens (md: min-width: 768px) */
       @media (min-width: 768px) {
         .card-content {
+          margin: 0 auto; /* Ubah ke auto untuk center */
           max-width: 600px;
           padding: 25px;
         }
+
         .hero-title {
           font-size: 2rem;
           color: white;
@@ -258,13 +271,14 @@
 
         .hero-subtitle {
           color: white;
-          font-size: 0.5rem;
+          font-size: 1rem;
           margin-bottom: 3rem;
         }
       }
 
       @media (min-width: 1024px) {
         .card-content {
+          margin: 0 auto;
           max-width: 800px;
           padding: 30px;
           border: 2px solid #ccc;
@@ -277,8 +291,12 @@
 
         .hero-subtitle {
           color: white;
-          font-size: 1rem;
+          font-size: 1.3rem;
           margin-bottom: 3rem;
+        }
+
+        .text-gelombang {
+          font-size: 50px;
         }
       }
     </style>
@@ -297,7 +315,7 @@
     <div class="card-content">
       <form>
         <div>
-          <h1 class="text-gelomang">Gelombang I</h1>
+          <h1 class="text-gelombang">Gelombang I</h1>
           <p class="text-semester">
             Semester genap 2024 - Semester Ganjil 2025
           </p>
