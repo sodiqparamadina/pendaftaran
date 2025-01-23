@@ -659,7 +659,7 @@ if($_GET['dev']){
                 "kip",
                 "non-akademik",
                 "tahfidz",
-                "kerjasama",
+                // "kerjasama",
               ]);
             }
 
@@ -701,8 +701,9 @@ if($_GET['dev']){
           } else {
             selectPendaftaran = jenisPendaftaranData.find(
             (pendaftaran) => pendaftaran.label === jalurMasukValue).id
-
           }
+
+          console.log(jenjang)
 
           const selectSistemKuliah = sistemKuliahData.find((sistemKuliah) => {
             const lokasiLower = sistemKuliah.lokasi.toLowerCase();
@@ -712,33 +713,31 @@ if($_GET['dev']){
           });
 
           $.ajax({
-                    url: 'proses.php', // File tujuan
-                    type: 'POST', // Metode HTTP
-                    data: {
-                      jenjang: jenjang,
-                      prodi: programStudi,
-                      id_sistem_kuliah: selectSistemKuliah.id,
-                      id_jalur_pendaftaran: selectPendaftaran
-                    }, // Data yang dikirim ke proses.php
-                    success: function (response) {
-                      const data = JSON.parse(response);
-                      // value="20251/1/10/8/42"
-
-                      
-                      const periodeAkademik = data[0].periode_akademik;
-                      const gelombang = data[0].id_gelombang;
-                      const jalurPendaftaran = data[0].id_jalur_pendaftaran;
-                      const sistemKuliah = data[0].id_sistem_kuliah;
-                      const idPeriode = data[0].id_periode_pendaftaran;
-                      
-                      const generatedKey = `${periodeAkademik}/${gelombang}/${jalurPendaftaran}/${sistemKuliah}/${idPeriode}`;
-                      $("#key").val(generatedKey);
-                      $("#prodipilihan").val(data[0].id_program_studi);
-                    },
-                    error: function (xhr, status, error) {
-                      console.error('Terjadi kesalahan:', error);
-                    }
-                  });
+            url: 'proses.php', // File tujuan
+            type: 'POST', // Metode HTTP
+            data: {
+              jenjang: jenjang,
+              prodi: programStudi,
+              id_sistem_kuliah: selectSistemKuliah.id,
+              id_jalur_pendaftaran: selectPendaftaran
+            }, // Data yang dikirim ke proses.php
+            success: function (response) {
+              const data = JSON.parse(response);
+              
+              const periodeAkademik = data[0].periode_akademik;
+              const gelombang = data[0].id_gelombang;
+              const jalurPendaftaran = data[0].id_jalur_pendaftaran;
+              const sistemKuliah = data[0].id_sistem_kuliah;
+              const idPeriode = data[0].id_periode_pendaftaran;
+              
+              const generatedKey = `${periodeAkademik}/${gelombang}/${jalurPendaftaran}/${sistemKuliah}/${idPeriode}`;
+              $("#key").val(generatedKey);
+              $("#prodipilihan").val(data[0].id_program_studi);
+            },
+            error: function (xhr, status, error) {
+              console.error('Terjadi kesalahan:', error);
+            }
+          });
 
 
           let newKelas = "";
