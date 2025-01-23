@@ -19,384 +19,8 @@ if($_GET['dev']){
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="styles/style.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Poppins", sans-serif;
-      }
-
-      body {
-        background-color: #f9f9f9f9;
-        margin: 0; /* Reset margin */
-        padding: 0; /* Reset padding */
-      }
-
-      .card-content {
-        margin: 0 20px; /* Tambahkan margin kiri-kanan */
-        width: auto; /* Biarkan width menyesuaikan dengan margin */
-        max-width: calc(
-          100% - 40px
-        ); /* Maximum width dikurangi margin kiri-kanan */
-        position: relative;
-        padding: 20px;
-        top: -140px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        background-color: #ffffff;
-      }
-
-      .required {
-        color: red;
-      }
-
-      .hero-section {
-        position: relative;
-        min-height: 300px;
-        padding: 40px;
-        background-image: url("images/paramadina.jpg");
-        background-size: cover;
-        background-position: center;
-      }
-
-      .hero-section::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
-      }
-
-      .hero-content {
-        position: relative;
-        z-index: 1;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .hero-title {
-        font-size: 20px;
-        color: white;
-        margin-bottom: 1rem;
-      }
-
-      .hero-subtitle {
-        color: white;
-        font-size: 12px;
-        margin-bottom: 3rem;
-      }
-
-      .text-gelombang {
-        font-size: 40px;
-        margin-top: -10px;
-      }
-
-      .text-semester {
-        /* margin-top: -25px; */
-        margin-bottom: 20px;
-      }
-
-      .form-input {
-        width: 30%;
-        margin-bottom: 20px;
-      }
-
-      .form-radio {
-        margin-bottom: 20px;
-      }
-
-      label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: bold;
-      }
-
-      select {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 14px;
-      }
-
-      /* Gaya dasar untuk container radio button */
-      .radio-group {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 15px;
-        margin-bottom: 2px;
-      }
-
-      /* Gaya dasar untuk label radio button */
-      .radio-label {
-        position: relative;
-        display: flex;
-        align-items: center;
-        background: white;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        padding: 10px 15px;
-        cursor: pointer;
-        font-size: 0.9rem;
-        color: #333;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease-in-out;
-      }
-
-      /* Gaya untuk radio button saat disabled */
-      .radio-input:disabled + .radio-label {
-        color: #aaa; /* Warna teks menjadi abu-abu */
-        cursor: not-allowed; /* Pointer berubah menjadi tidak diizinkan */
-        opacity: 0.6; /* Kurangi opacity */
-      }
-
-      /* Efek hover */
-      .radio-label:hover {
-        background-color: #f8f9fa;
-        border-color: #007bff;
-      }
-
-      /* Radio button yang sebenarnya (disembunyikan) */
-      .radio-input {
-        position: absolute;
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      /* Gaya untuk label jika radio button dipilih */
-      .radio-input:checked + .radio-label {
-        border-color: #007bff;
-        background-color: #e9f4ff;
-        color: #0056b3;
-      }
-
-      /* Indikator lingkaran untuk radio button */
-      .radio-label::before {
-        content: "";
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        border: 2px solid #ccc;
-        border-radius: 50%;
-        margin-right: 10px;
-        transition: all 0.3s ease-in-out;
-      }
-
-      /* Lingkaran terisi jika radio button dipilih */
-      .radio-input:checked + .radio-label::before {
-        border-color: #007bff;
-        background-color: #007bff;
-      }
-
-      .hidden {
-        display: none;
-      }
-
-      .card-container {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      .card {
-        background: white;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-      }
-
-      .card h3 {
-        font-size: 1.2rem;
-        margin: 0 0 10px;
-      }
-
-      .card p {
-        font-size: 0.9rem;
-        color: #555;
-        margin: 0 0 15px;
-      }
-
-      .location {
-        display: inline-block;
-        background: #e9ecef;
-        padding: 5px 10px;
-        font-size: 0.8rem;
-        color: #6c757d;
-        border-radius: 4px;
-        margin-bottom: 15px;
-      }
-
-      .info {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 0.9rem;
-        margin-bottom: 15px;
-      }
-
-      .info .fee {
-        color: #ff6f00;
-        font-weight: bold;
-      }
-
-      .register-btn {
-        background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        font-size: 0.9rem;
-        cursor: pointer;
-        border-radius: 4px;
-      }
-
-      .register-btn:hover {
-        background-color: #0056b3;
-      }
-
-      .calendar-icon {
-        margin-right: 5px;
-      }
-
-      /* Medium screens (md: min-width: 768px) */
-      @media (min-width: 768px) {
-        .card-content {
-          margin: 0 auto; /* Ubah ke auto untuk center */
-          max-width: 600px;
-          padding: 25px;
-        }
-
-        .hero-title {
-          font-size: 2rem;
-          color: white;
-        }
-
-        .hero-subtitle {
-          color: white;
-          font-size: 1rem;
-          margin-bottom: 3rem;
-        }
-      }
-
-      @media (min-width: 1024px) {
-        .card-content {
-          margin: 0 auto;
-          max-width: 800px;
-          padding: 30px;
-          border: 2px solid #ccc;
-        }
-
-        .hero-title {
-          font-size: 2rem;
-          color: white;
-        }
-
-        .hero-subtitle {
-          color: white;
-          font-size: 1.3rem;
-          margin-bottom: 3rem;
-        }
-
-        .text-gelombang {
-          font-size: 50px;
-        }
-      }
-
-      .header-container {
-        font-family: system-ui, -apple-system, sans-serif;
-      }
-
-      .main-header {
-        border-bottom: 1px solid #e5e7eb;
-      }
-
-      .header-wrapper {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 1rem;
-      }
-
-      .nav-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1rem 0;
-      }
-
-      .logo-section {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-      }
-
-      .logo-img {
-        width: 40px;
-        height: 40px;
-        object-fit: contain;
-      }
-
-      .university-name {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .admission-text {
-        font-size: 0.75rem;
-        color: #666;
-      }
-
-      .uni-text {
-        font-weight: 600;
-      }
-
-      .main-nav {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-        font-size: 13px;
-      }
-
-      .nav-link {
-        color: #666;
-        text-decoration: none;
-      }
-
-      .nav-link:hover {
-        color: #1d8fe1;
-      }
-
-      .dropdown {
-        display: flex;
-        align-items: center;
-        gap: 0.25rem;
-      }
-
-      .login-section {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-      }
-
-      .login-button {
-        background-color: white;
-        color: #3b82f6;
-        font-weight: bold;
-        padding: 1rem 1rem;
-        border-radius: 0.375rem;
-        border: 1px solid #1d8fe1;
-        cursor: pointer;
-      }
-
-      .login-button:hover {
-        background-color: #1d8fe1;
-        color: white;
-      }
-    </style>
   </head>
   <body>
     <div class="header-container">
@@ -435,7 +59,7 @@ if($_GET['dev']){
             </nav>
 
             <div class="login-section">
-              <button class="login-button">Masuk</button>
+              <a href="https://paramadina.siakadcloud.com/spmbfront/login" class="login-button">Masuk</a>
             </div>
           </div>
         </div>
@@ -751,8 +375,9 @@ if($_GET['dev']){
               >
               <span class="fee">Biaya Daftar <b>Rp. 300.000</b></span>
             </div>
-            <input type="hidden" name="key" value="20251/1/4/1/46" />
-            <input type="hidden" name="prodipilihan" value="55201" />
+            <input type="hidden" id="key" name="key" />
+            <!--Periode akademik/gelombang/jalur pendaftaran/sistem kuliah/id periode-->
+            <input type="hidden" id="prodipilihan" name="prodipilihan" />
             <input type="hidden" name="act" value="detail" />
             <button class="register-btn">Daftar Sekarang</button>
           </div>
@@ -760,7 +385,10 @@ if($_GET['dev']){
       </form>
     </div>
 
-    <script>
+    <script type="module">
+       import { jenisPendaftaranData } from '/data/jalur-pendaftaran.js'
+       import { sistemKuliahData } from '/data/sistem-kuliah.js'
+
       $(document).ready(function () {
         // Data program studi berdasarkan jenjang
         const prodiData = {
@@ -775,11 +403,11 @@ if($_GET['dev']){
             "Manajemen",
           ],
           s2: [
-            "Psikologi",
-            "Ilmu Hubungan Internasional",
-            "Ilmu Komunikasi",
-            "Manajemen",
-            "Ilmu Agama Islam",
+            "S2 - Psikologi",
+            "S2 - Ilmu Hubungan Internasional",
+            "S2 - Ilmu Komunikasi",
+            "S2 - Manajemen",
+            "S2 - Ilmu Agama Islam",
           ],
         };
 
@@ -804,11 +432,11 @@ if($_GET['dev']){
             prodiData[jenjang].forEach(function (prodi, index) {
               const prodiId = `prodi-${index}`;
               prodiOptions.append(`
-        <div>
-          <input type="radio" id="${prodiId}" name="program-studi" value="${prodi.toLowerCase()}" class="radio-input">
-          <label for="${prodiId}" class="radio-label">${prodi}</label>
-        </div>
-      `);
+                <div>
+                  <input type="radio" id="${prodiId}" name="program-studi" value="${prodi.toLowerCase()}" class="radio-input">
+                  <label for="${prodiId}" class="radio-label">${prodi}</label>
+                </div>
+              `);
             });
             prodiContainer.removeClass("hidden");
           } else {
@@ -1058,7 +686,60 @@ if($_GET['dev']){
           const jalurMasuk = $("input[name='jalur-masuk']:checked")
             .next("label")
             .text();
+          const jalurMasukValue = $("input[name='jalur-masuk']:checked").val();
+          const waktuPerkuliahan = $("input[name='waktu-perkuliahan']:checked").val();
           const lokasiKampus = $("input[name='lokasi-kampus']:checked").val();
+          const programStudi = $("input[name='program-studi']:checked").val();
+          const alihJenjang = $("input[name='jenis-pendaftaran']:checked").val();
+
+          let selectPendaftaran = "";
+          
+          if (alihJenjang === "alih-jenjang") {
+            selectPendaftaran = 2; 
+          } else if (alihJenjang === "pindahan") {
+            selectPendaftaran = 3;
+          } else {
+            selectPendaftaran = jenisPendaftaranData.find(
+            (pendaftaran) => pendaftaran.label === jalurMasukValue).id
+
+          }
+
+          const selectSistemKuliah = sistemKuliahData.find((sistemKuliah) => {
+            const lokasiLower = sistemKuliah.lokasi.toLowerCase();
+            const kelasFormatted = sistemKuliah.kelas.toLowerCase().replace(/\s+/g, "-");
+            
+            return lokasiLower === lokasiKampus && kelasFormatted === kelas;
+          });
+
+          $.ajax({
+                    url: 'proses.php', // File tujuan
+                    type: 'POST', // Metode HTTP
+                    data: {
+                      jenjang: jenjang,
+                      prodi: programStudi,
+                      id_sistem_kuliah: selectSistemKuliah.id,
+                      id_jalur_pendaftaran: selectPendaftaran
+                    }, // Data yang dikirim ke proses.php
+                    success: function (response) {
+                      const data = JSON.parse(response);
+                      // value="20251/1/10/8/42"
+
+                      
+                      const periodeAkademik = data[0].periode_akademik;
+                      const gelombang = data[0].id_gelombang;
+                      const jalurPendaftaran = data[0].id_jalur_pendaftaran;
+                      const sistemKuliah = data[0].id_sistem_kuliah;
+                      const idPeriode = data[0].id_periode_pendaftaran;
+                      
+                      const generatedKey = `${periodeAkademik}/${gelombang}/${jalurPendaftaran}/${sistemKuliah}/${idPeriode}`;
+                      $("#key").val(generatedKey);
+                      $("#prodipilihan").val(data[0].id_program_studi);
+                    },
+                    error: function (xhr, status, error) {
+                      console.error('Terjadi kesalahan:', error);
+                    }
+                  });
+
 
           let newKelas = "";
           let jam = "";
@@ -1089,6 +770,7 @@ if($_GET['dev']){
           $(".waktu-kuliah-dipilih").text(waktuKuliah);
           $("#jalur-dipilih").text(jalurMasuk);
           $("#kampus-dipilih").text(capitalizeFirstLetter(lokasiKampus));
+
         });
 
         function capitalizeFirstLetter(text) {
