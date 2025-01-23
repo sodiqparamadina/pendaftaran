@@ -557,7 +557,8 @@ if($_GET['dev']){
                 jenisPendaftaran === "baru"
               ) {
                 // Sembunyikan kelas B dan D jika sesuai kondisi
-                $("#waktu-perkuliahan-b, #waktu-perkuliahan-d").prop(
+                // $("#waktu-perkuliahan-b, #waktu-perkuliahan-d").prop(
+                  $("#waktu-perkuliahan-b").prop(
                   "disabled",
                   true
                 );
@@ -698,6 +699,8 @@ if($_GET['dev']){
             selectPendaftaran = 2; 
           } else if (alihJenjang === "pindahan") {
             selectPendaftaran = 3;
+          } else if (alihJenjang === 'baru' && (kelas === 'kelas-b' || kelas === "kelas-c" || kelas === "kelas-d") && jalurMasukValue === "tpa") {
+            selectPendaftaran = 23;
           } else {
             selectPendaftaran = jenisPendaftaranData.find(
             (pendaftaran) => pendaftaran.label === jalurMasukValue).id
