@@ -734,8 +734,6 @@ if($_GET['dev']){
             return lokasiLower === lokasiKampus && kelasFormatted === kelas;
           });
 
-          console.log(selectSistemKuliah)
-
           $.ajax({
             url: 'proses.php', // File tujuan
             type: 'POST', // Metode HTTP
@@ -745,6 +743,39 @@ if($_GET['dev']){
               prodi: programStudi,
               id_sistem_kuliah: selectSistemKuliah.id,
               id_jalur_pendaftaran: selectPendaftaran
+            }, // Data yang dikirim ke proses.php
+            success: function (response) {
+              const data = JSON.parse(response);
+              console.log(data)
+              
+              const periodeAkademik = data[0].periode_akademik;
+              const gelombang = data[0].id_gelombang;
+              const jalurPendaftaran = data[0].id_jalur_pendaftaran;
+              const sistemKuliah = data[0].id_sistem_kuliah;
+              const idPeriode = data[0].id_periode_pendaftaran;
+
+              $("#jenjang-dipilih").text(data[0].nama_periode_pendaftaran);
+              $("#jalur-dipilih").text(data[0].jalur_pendaftaran);
+              $("#gelombang-dipilih").text(data[0].gelombang);
+              $("#kampus-dipilih").text(data[0].sistem_kuliah);
+              $("#waktu-kuliah-dipilih").text(selectSistemKuliah.jadwal);
+              
+              const generatedKey = `${periodeAkademik}/${gelombang}/${jalurPendaftaran}/${sistemKuliah}/${idPeriode}`;
+              $("#key").val(generatedKey);
+              $("#prodipilihan").val(data[0].id_program_studi);
+            },
+            error: function (xhr, status, error) {
+              console.error('Terjadi kesalahan:', error);
+            }
+          });
+
+          $.ajax({
+            url: 'getPeriodePendaftaran.php', // File tujuan
+            type: 'POST', // Metode HTTP
+            data: {
+              id_sistem_kuliah: selectSistemKuliah.id,
+              id_jalur_pendaftaran: selectPendaftaran,
+              id_periode_akademik: '20251'
             }, // Data yang dikirim ke proses.php
             success: function (response) {
               const data = JSON.parse(response);
