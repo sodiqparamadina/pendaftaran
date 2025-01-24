@@ -1,6 +1,7 @@
 <?php
             require 'config.php';
 
+            $lokasi = isset($_POST['lokasi']) ? $_POST['lokasi'] : '';
             $jenjang = isset($_POST['jenjang']) ? $_POST['jenjang'] : '';
             $id_prodi = isset($_POST['id_prodi']) ? $_POST['id_prodi'] : '';
             $id_sistem_kuliah = isset($_POST['id_sistem_kuliah']) ? $_POST['id_sistem_kuliah'] : '';
@@ -9,8 +10,9 @@
             
             if (strtolower($prodi) == "teknik informatika") {
               $id_prodi = 55201;
-            } else if (strtolower($prodi) == "manajemen") {
+            } else if (strtolower($prodi) == "manajemen" && $lokasi === "") {
               $id_prodi = 61201;
+              // $id_jalur_pendaftaran = 23;
             } else if (strtolower($prodi) == "ilmu komunikasi") {
               $id_prodi = 70201;
             } else if (strtolower($prodi) == "hubungan internasional") {
@@ -26,6 +28,7 @@
             } else {
               $id_prodi = 0;
             }
+            
               // Contoh query
               $sql = "
                 select * from program_studi_dibukas

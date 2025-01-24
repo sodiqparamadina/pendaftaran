@@ -601,6 +601,7 @@ if($_GET['dev']){
             const jenisPendaftaran = $(
               "input[name='jenis-pendaftaran']:checked"
             ).val();
+            const programStudi = $("input[name='program-studi']:checked").val();
 
             // Reset semua radio button jalur masuk
             $("input[name='jalur-masuk']")
@@ -664,6 +665,16 @@ if($_GET['dev']){
               ]);
             }
 
+            if (waktuPerkuliahan === "kelas-c" && programStudi === "manajemen"){
+              disableJalurMasukOptions([
+                "influencer",
+                "kip",
+                "non-akademik",
+                "tahfidz",
+                "kerjasama",
+              ]); 
+            }
+
             // Reset nilai jalur masuk
             $("#card-container").addClass("hidden");
             $("input[name='jalur-masuk']").prop("checked", false);
@@ -715,10 +726,13 @@ if($_GET['dev']){
             return lokasiLower === lokasiKampus && kelasFormatted === kelas;
           });
 
+          console.log(selectSistemKuliah)
+
           $.ajax({
             url: 'proses.php', // File tujuan
             type: 'POST', // Metode HTTP
             data: {
+              lokasi: lokasiKampus,
               jenjang: jenjang,
               prodi: programStudi,
               id_sistem_kuliah: selectSistemKuliah.id,
@@ -726,6 +740,7 @@ if($_GET['dev']){
             }, // Data yang dikirim ke proses.php
             success: function (response) {
               const data = JSON.parse(response);
+              console.log(data)
               
               const periodeAkademik = data[0].periode_akademik;
               const gelombang = data[0].id_gelombang;
