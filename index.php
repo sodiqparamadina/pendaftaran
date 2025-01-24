@@ -272,77 +272,86 @@ if($_GET['dev']){
               class="radio-input"
             />
             <label for="tpa" class="radio-label"
-              >Jalur Tes Potensi Akademik (TPA) - Reguler</label
-            >
-            <input
-              type="radio"
-              id="influencer"
-              name="jalur-masuk"
-              value="influencer"
-              class="radio-input"
-            />
-            <label for="influencer" class="radio-label">Jalur Influencer</label>
-
-            <input
-              type="radio"
-              id="non-akademik"
-              name="jalur-masuk"
-              value="non-akademik"
-              class="radio-input"
-            />
-            <label for="non-akademik" class="radio-label"
-              >Jalur Prestasi Non Akademik</label
-            >
-
-            <input
-              type="radio"
-              id="rapor"
-              name="jalur-masuk"
-              value="rapor"
-              class="radio-input"
-            />
-            <label for="rapor" class="radio-label">Jalur Nilai Rapor</label>
-
-            <input
-              type="radio"
-              id="tahfidz"
-              name="jalur-masuk"
-              value="tahfidz"
-              class="radio-input"
-            />
-            <label for="tahfidz" class="radio-label"
-              >Jalur Tahfidz Alquran</label
-            >
-
-            <input
-              type="radio"
-              id="utbk"
-              name="jalur-masuk"
-              value="utbk"
-              class="radio-input"
-            />
-            <label for="utbk" class="radio-label">Jalur Skor UTBK</label>
-
-            <!-- <label for="jalur-khusus">-- Jalur Khusus --</label> -->
-            <input
-              type="radio"
-              id="kip"
-              name="jalur-masuk"
-              value="kip"
-              class="radio-input"
-            />
-            <label for="kip" class="radio-label">Jalur KIP</label>
-            <input
-              type="radio"
-              id="kerjasama"
-              name="jalur-masuk"
-              value="kerjasama"
-              class="radio-input"
-            />
-            <label for="kerjasama" class="radio-label"
-              >Jalur Beasiswa Kerjasama Perusahaan</label
-            >
+              >Jalur Tes Potensi Akademik (TPA) - Reguler</label>
           </div>
+          <div class="hr-inline">
+            <h5>Beasiswa</h5>
+            <hr>
+          </div>
+          <div id="jalur-masuk-options" class="jalur-masuk-options radio-group">
+            <input
+                type="radio"
+                id="influencer"
+                name="jalur-masuk"
+                value="influencer"
+                class="radio-input"
+              />
+              <label for="influencer" class="radio-label">Jalur Influencer</label>
+
+              <input
+                type="radio"
+                id="non-akademik"
+                name="jalur-masuk"
+                value="non-akademik"
+                class="radio-input"
+              />
+              <label for="non-akademik" class="radio-label"
+                >Jalur Prestasi Non Akademik</label
+              >
+
+              <input
+                type="radio"
+                id="rapor"
+                name="jalur-masuk"
+                value="rapor"
+                class="radio-input"
+              />
+              <label for="rapor" class="radio-label">Jalur Nilai Rapor</label>
+
+              <input
+                type="radio"
+                id="tahfidz"
+                name="jalur-masuk"
+                value="tahfidz"
+                class="radio-input"
+              />
+              <label for="tahfidz" class="radio-label"
+                >Jalur Tahfidz Alquran</label
+              >
+
+              <input
+                type="radio"
+                id="utbk"
+                name="jalur-masuk"
+                value="utbk"
+                class="radio-input"
+              />
+              <label for="utbk" class="radio-label">Jalur Skor UTBK</label>
+            </div>
+            <div class="hr-inline">
+            <h5>Jalur Khusus</h5>
+              <hr>
+            </div>
+            <div id="jalur-masuk-options" class="jalur-masuk-options radio-group">
+            <input
+                type="radio"
+                id="kip"
+                name="jalur-masuk"
+                value="kip"
+                class="radio-input"
+              />
+              <label for="kip" class="radio-label">Jalur KIP</label>
+              <input
+                type="radio"
+                id="kerjasama"
+                name="jalur-masuk"
+                value="kerjasama"
+                class="radio-input"
+              />
+              <label for="kerjasama" class="radio-label"
+                >Jalur Beasiswa Kerjasama Perusahaan</label
+              >
+            </div>
         </div>
 
         <div class="card-container">

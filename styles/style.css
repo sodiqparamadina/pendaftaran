@@ -143,6 +143,23 @@ select {
   pointer-events: none;
 }
 
+.hr-inline {
+  display: flex;
+  align-items: center; /* Menyelaraskan elemen secara vertikal */
+  gap: 10px; /* Jarak antara teks dan garis */
+}
+
+.hr-inline h5 {
+  margin: 0; /* Menghapus margin bawaan pada elemen h5 */
+}
+
+.hr-inline hr {
+  flex-grow: 1; /* Membuat garis meluas */
+  border: none;
+  border-top: 1px solid #000; /* Gaya garis */
+  margin: 0; /* Menghapus margin bawaan */
+}
+
 /* Gaya untuk label jika radio button dipilih */
 .radio-input:checked + .radio-label {
   border-color: #007bff;
@@ -345,6 +362,7 @@ select {
   align-items: center;
   gap: 1.5rem;
   font-size: 13px;
+  font-weight: 600;
 }
 
 .nav-link {
