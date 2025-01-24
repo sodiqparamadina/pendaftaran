@@ -10,9 +10,8 @@
             
             if (strtolower($prodi) == "teknik informatika") {
               $id_prodi = 55201;
-            } else if (strtolower($prodi) == "manajemen" && $lokasi === "") {
+            } else if (strtolower($prodi) == "manajemen") {
               $id_prodi = 61201;
-              // $id_jalur_pendaftaran = 23;
             } else if (strtolower($prodi) == "ilmu komunikasi") {
               $id_prodi = 70201;
             } else if (strtolower($prodi) == "hubungan internasional") {

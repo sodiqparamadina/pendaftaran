@@ -272,7 +272,7 @@ if($_GET['dev']){
               class="radio-input"
             />
             <label for="tpa" class="radio-label"
-              >Jalur Tes Potensi Akademik (TPA) - Reguler</label>
+              >Jalur Tes Potensi Akademik (TPA)</label>
           </div>
           <div class="hr-inline">
             <h5>Beasiswa</h5>
@@ -327,20 +327,28 @@ if($_GET['dev']){
                 class="radio-input"
               />
               <label for="utbk" class="radio-label">Jalur Skor UTBK</label>
+              <input
+                type="radio"
+                id="kip-prestasi"
+                name="jalur-masuk"
+                value="kip-prestasi"
+                class="radio-input"
+              />
+              <label for="kip-prestasi" class="radio-label">Jalur KIP Prestasi Paramadina</label>
             </div>
             <div class="hr-inline">
             <h5>Jalur Khusus</h5>
               <hr>
             </div>
             <div id="jalur-masuk-options" class="jalur-masuk-options radio-group">
-            <input
+              <input
                 type="radio"
-                id="kip"
+                id="kip-kuliah"
                 name="jalur-masuk"
-                value="kip"
+                value="kip-kuliah"
                 class="radio-input"
               />
-              <label for="kip" class="radio-label">Jalur KIP</label>
+              <label for="kip-kuliah" class="radio-label">Jalur KIP Kuliah</label>
               <input
                 type="radio"
                 id="kerjasama"
@@ -357,25 +365,17 @@ if($_GET['dev']){
         <div class="card-container">
           <div class="card hidden" id="card-container">
             <h3>
-              <span class="jenjang-dipilih"></span>
-              <!--  S1/S2 -->
-              <span class="kelas-dipilih"></span>
-              <!-- Kelas A/B/C/D -->
-              ( <span class="jam-dipilih"></span> )
-              <!-- 09.45 - 18.00 WIB -->
+              <span id="jenjang-dipilih"></span>
               -
               <span id="jalur-dipilih"></span>
-              <!-- Jalur Masuk -->
+              <span id="gelombang-dipilih"></span>
             </h3>
             <p>
               Waktu Perkuliahan:
-              <span class="waktu-kuliah-dipilih"></span>
-              (<span class="jam-dipilih"></span>).
+              <span id="waktu-kuliah-dipilih"></span>
             </p>
             <span class="location">
-              ( <span id="kampus-dipilih"></span> )
-              <span span class="jenjang-dipilih"></span>
-              <span class="kelas-dipilih"></span>
+              <span id="kampus-dipilih"></span>
             </span>
             <div class="info">
               <span
@@ -385,7 +385,6 @@ if($_GET['dev']){
               <span class="fee">Biaya Daftar <b>Rp. 300.000</b></span>
             </div>
             <input type="hidden" id="key" name="key" />
-            <!--Periode akademik/gelombang/jalur pendaftaran/sistem kuliah/id periode-->
             <input type="hidden" id="prodipilihan" name="prodipilihan" />
             <input type="hidden" name="act" value="detail" />
             <button class="register-btn">Daftar Sekarang</button>
@@ -756,6 +755,12 @@ if($_GET['dev']){
               const jalurPendaftaran = data[0].id_jalur_pendaftaran;
               const sistemKuliah = data[0].id_sistem_kuliah;
               const idPeriode = data[0].id_periode_pendaftaran;
+
+              $("#jenjang-dipilih").text(data[0].nama_periode_pendaftaran);
+              $("#jalur-dipilih").text(data[0].jalur_pendaftaran);
+              $("#gelombang-dipilih").text(data[0].gelombang);
+              $("#kampus-dipilih").text(data[0].sistem_kuliah);
+              $("#waktu-kuliah-dipilih").text(selectSistemKuliah.jadwal);
               
               const generatedKey = `${periodeAkademik}/${gelombang}/${jalurPendaftaran}/${sistemKuliah}/${idPeriode}`;
               $("#key").val(generatedKey);
@@ -765,7 +770,6 @@ if($_GET['dev']){
               console.error('Terjadi kesalahan:', error);
             }
           });
-
 
           let newKelas = "";
           let jam = "";
@@ -790,13 +794,6 @@ if($_GET['dev']){
           }
 
           cardContainer.removeClass("hidden");
-          $(".jenjang-dipilih").text(capitalizeFirstLetter(jenjang));
-          $(".kelas-dipilih").text(newKelas);
-          $(".jam-dipilih").text(jam);
-          $(".waktu-kuliah-dipilih").text(waktuKuliah);
-          $("#jalur-dipilih").text(jalurMasuk);
-          $("#kampus-dipilih").text(capitalizeFirstLetter(lokasiKampus));
-
         });
 
         function capitalizeFirstLetter(text) {

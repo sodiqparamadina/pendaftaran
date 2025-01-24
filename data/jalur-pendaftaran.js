@@ -66,7 +66,7 @@ export const jenisPendaftaranData = [
   {
     id: 15,
     name: "Jalur KIP Prestasi Paramadina",
-    label: "kip",
+    label: "kip-prestasi",
     type: "Peserta Didik Baru",
   },
   {
@@ -90,7 +90,7 @@ export const jenisPendaftaranData = [
   {
     id: 19,
     name: "Beasiswa KIP Kuliah",
-    label: "kip-beasiswa",
+    label: "kip-kuliah",
     type: "Peserta Didik Baru",
   },
   {
