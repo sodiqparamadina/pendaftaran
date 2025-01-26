@@ -7,10 +7,13 @@
               // Contoh query
               $sql = "
                 select *
-                from program_studi_dibukas
-                where jenjang_program_studi = '$jenjang'
-                and id_program_studi = $id_prodi
-                and sistem_kuliah like '%$lokasi%'
+                from program_studi_dibukas 
+                left join periode_pendaftaran 
+                on program_studi_dibukas.id_periode_pendaftaran = periode_pendaftaran.id
+                where program_studi_dibukas.jenjang_program_studi = '$jenjang'
+                and program_studi_dibukas.id_program_studi = $id_prodi
+                and program_studi_dibukas.sistem_kuliah like '%$lokasi%'
+                and periode_pendaftaran.status_periode_pendaftaran = 'Aktif'
               ";
               $result = mysqli_query($conn, $sql);
                 // Jika query berhasil

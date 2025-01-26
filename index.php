@@ -170,8 +170,8 @@ if($_GET['dev']){
     </div>
 
     <script type="module">
-       import { jenisPendaftaranData } from '/data/jalur-pendaftaran.js'
-       import { sistemKuliahData } from '/data/sistem-kuliah.js'
+      //  import { jenisPendaftaranData } from '/data/jalur-pendaftaran.js'
+      //  import { sistemKuliahData } from '/data/sistem-kuliah.js'
 
       $(document).ready(function () {
         // GET JENJANG
@@ -341,6 +341,7 @@ if($_GET['dev']){
 
         $(document).on("change", "input[name='lokasi-kampus']", function () {
           const lokasiKampus = $(this).val();
+          // console.log('lokasi',lokasiKampus);
           const programStudi = $("input[name='program-studi']:checked").val();
           const jenjang = $("input[name='jenjang']:checked").val();
 
@@ -349,7 +350,8 @@ if($_GET['dev']){
           const pendaftaranAlihJenjang = $("#pendaftaran-alih-jenjang");
           const pendaftaranPindahan = $("#pendaftaran-pindahan");
 
-          if (lokasiKampus && jenjang === "S1") {
+          // if (lokasiKampus && jenjang === "S1") {
+            if (jenjang === "S1") {
             // GET JENIS PENDAFTARAN
             $.ajax({
               url: 'getJenisPendaftaran.php',
@@ -402,6 +404,27 @@ if($_GET['dev']){
             // END GET JENIS PENDAFTARAN
             
             jenisPendaftaranContainer.removeClass("hidden");
+          } else if(jenjang === "S2") {
+           // Tampilkan opsi statis untuk jenjang S2
+              const jenisPendaftaranOptions = $("#jenis-pendaftaran-options");
+              jenisPendaftaranOptions.empty();
+
+              jenisPendaftaranOptions.append(`
+                <div>
+                  <input 
+                    type="radio" 
+                    id="jenis-pendaftaran-lulusan-s1" 
+                    name="jenis-pendaftaran" 
+                    value="lulusan-s1" 
+                    class="radio-input"
+                  >
+                  <label for="jenis-pendaftaran-lulusan-s1" class="radio-label">
+                    Lulusan S1
+                  </label>
+                </div>
+              `);
+
+              jenisPendaftaranContainer.removeClass("hidden");
           } else {
             jenisPendaftaranContainer.addClass("hidden");
           }
@@ -421,68 +444,102 @@ if($_GET['dev']){
             const dataJenisPendaftaran = $(this).data('id-jalur-pendaftaran');
             const programStudi = $("input[name='program-studi']:checked").val();
             const jenjang = $("input[name='jenjang']:checked").val();
-
+           
             if (jenisPendaftaran) {
               // GET WAKTU PERKULIAHAN
-              $.ajax({
-                url: 'getWaktuPerkuliahan.php',
-                type: 'POST',
-                data: {
-                  jenjang: jenjang,
-                  id_prodi: programStudi,
-                  lokasi: lokasiKampus,
-                },
-                success: function (response) {
-                  const data = JSON.parse(response);
+              if (jenjang == "S1") {
+                $.ajax({
+                  url: 'getWaktuPerkuliahan.php',
+                  type: 'POST',
+                  data: {
+                    jenjang: jenjang,
+                    id_prodi: programStudi,
+                    lokasi: lokasiKampus,
+                  },
+                  success: function (response) {
+                    const data = JSON.parse(response);
 
-                  // Modifikasi data jika kondisi tertentu terpenuhi
-                  const modifiedData = data.map(function (item) {
-                    if (item.nama_periode_pendaftaran === "Jalur Transfer ( Mahasiswa Pindahan)") {
-                      item.nama_periode_pendaftaran = "S1 Kelas A (09.45 - 18.00 WIB)";
-                    }
-                    return item;
-                  });
-
-                  const waktuPerkuliahanOptions = $("#waktu-perkuliahan-options");
-                  waktuPerkuliahanOptions.empty();
-
-                  const allWaktuKuliah = [
-                    'S1 Kelas A (09.45 - 18.00 WIB)',
-                    'S1 Kelas B (18.30 - 21.00 WIB) + Online (Sabtu)',
-                    'S1 Kelas C (Sabtu Sesi 1) + Online (On Weekdays)',
-                    'S1 Kelas D (Sabtu sesi 2) + Online (On Weekdays)'
-                  ];
-
-                  // Render semua waktu perkuliahan
-                  allWaktuKuliah.forEach(function (WaktuKuliah) {
-                    // Cek apakah Waktu perkuliahan ada dalam data yang diterima
-                    const WaktuKuliahAvailable = modifiedData.some(function (WaktuKuliahAvail) {
-                      return WaktuKuliahAvail.nama_periode_pendaftaran === WaktuKuliah;
+                    // Modifikasi data jika kondisi tertentu terpenuhi
+                    const modifiedData = data.map(function (item) {
+                      if (item.nama_periode_pendaftaran === "Jalur Transfer ( Mahasiswa Pindahan)") {
+                        item.nama_periode_pendaftaran = "S1 Kelas A (09.45 - 18.00 WIB)";
+                      }
+                      return item;
                     });
 
-                    // Tambahkan elemen radio
-                    waktuPerkuliahanOptions.append(`
-                      <div>
-                        <input 
-                          type="radio" 
-                          id="waktu-perkuliahan-${WaktuKuliah}" 
-                          name="waktu-perkuliahan" 
-                          value="${WaktuKuliah}" 
-                          class="radio-input"
-                          ${WaktuKuliahAvailable ? '' : 'disabled'}
-                        >
-                        <label for="waktu-perkuliahan-${WaktuKuliah}" class="radio-label">${WaktuKuliah}</label>
-                      </div>
-                    `);
-                  });
-                },
-                error: function (xhr, status, error) {
-                  console.error('Terjadi kesalahan:', error);
-                }
-              });
-              // END GET WAKTU PERKULIAHAN
+                    const waktuPerkuliahanOptions = $("#waktu-perkuliahan-options");
+                    waktuPerkuliahanOptions.empty();
 
-              waktuPerkuliahanContainer.removeClass("hidden");
+                    const allWaktuKuliah = [
+                      'S1 Kelas A (09.45 - 18.00 WIB)',
+                      'S1 Kelas B (18.30 - 21.00 WIB) + Online (Sabtu)',
+                      'S1 Kelas C (Sabtu Sesi 1) + Online (On Weekdays)',
+                      'S1 Kelas D (Sabtu sesi 2) + Online (On Weekdays)'
+                    ];
+
+                    // Render semua waktu perkuliahan
+                    allWaktuKuliah.forEach(function (WaktuKuliah) {
+                      // Cek apakah Waktu perkuliahan ada dalam data yang diterima
+                      const WaktuKuliahAvailable = modifiedData.some(function (WaktuKuliahAvail) {
+                        return WaktuKuliahAvail.nama_periode_pendaftaran === WaktuKuliah;
+                      });
+
+                      // Tambahkan elemen radio
+                      waktuPerkuliahanOptions.append(`
+                        <div>
+                          <input 
+                            type="radio" 
+                            id="waktu-perkuliahan-${WaktuKuliah}" 
+                            name="waktu-perkuliahan" 
+                            value="${WaktuKuliah}" 
+                            class="radio-input"
+                            ${WaktuKuliahAvailable ? '' : 'disabled'}
+                          >
+                          <label for="waktu-perkuliahan-${WaktuKuliah}" class="radio-label">${WaktuKuliah}</label>
+                        </div>
+                      `);
+                    });
+                  },
+                  error: function (xhr, status, error) {
+                    console.error('Terjadi kesalahan:', error);
+                  }
+                });
+                waktuPerkuliahanContainer.removeClass("hidden");
+              } else {
+                $.ajax({
+                  url: 'getWaktuPerkuliahan.php',
+                  type: 'POST',
+                  data: {
+                    jenjang: jenjang,
+                    id_prodi: programStudi,
+                    lokasi: lokasiKampus,
+                  },
+                  success: function (response) {
+                    const data = JSON.parse(response);
+                  
+                    const waktuPerkuliahanOptions = $("#waktu-perkuliahan-options");
+                    waktuPerkuliahanOptions.empty();
+
+                    // Render input radio langsung dari data
+                    data.forEach(function (item) {
+                      waktuPerkuliahanOptions.append(`
+                        <div>
+                          <input 
+                            type="radio" 
+                            id="waktu-perkuliahan-${item.nama_periode_pendaftaran.replace(/\s+/g, '-').toLowerCase()}" 
+                            name="waktu-perkuliahan" 
+                            value="${item.nama_periode_pendaftaran}" 
+                            class="radio-input"
+                          >
+                          <label for="waktu-perkuliahan-${item.nama_periode_pendaftaran.replace(/\s+/g, '-').toLowerCase()}" class="radio-label">${item.nama_periode_pendaftaran}</label>
+                        </div>
+                      `);
+                    });
+                  }
+                });
+                waktuPerkuliahanContainer.removeClass("hidden");
+              }
+              
             } else {
               // Sembunyikan kontainer waktu perkuliahan jika jenis pendaftaran kosong
               waktuPerkuliahanContainer.addClass("hidden");
@@ -509,64 +566,99 @@ if($_GET['dev']){
 
             if (waktuPerkuliahan) {
               // GET JALUR MASUK
-              $.ajax({
-                url: "getJalurMasuk.php",
-                type: "POST",
-                data: {
-                  jenjang: jenjang,
-                  id_prodi: programStudi,
-                  lokasi: lokasiKampus,
-                  periode_pendaftaran: periodePendaftaran,
-                },
-                success: function (response) {
-                  const data = JSON.parse(response);
-                  
-                  $.ajax({
-                    url: "getListJalurMasuk.php",
-                    type: "POST",
-                    data: {
-                      jenjang: jenjang,
-                    },
-                    success: function (response) {
-                      const dataList = JSON.parse(response);
+              if (jenjang == "S1") {
+                $.ajax({
+                  url: "getJalurMasuk.php",
+                  type: "POST",
+                  data: {
+                    jenjang: jenjang,
+                    id_prodi: programStudi,
+                    lokasi: lokasiKampus,
+                    periode_pendaftaran: periodePendaftaran,
+                  },
+                  success: function (response) {
+                    const data = JSON.parse(response);
+                    
+                    $.ajax({
+                      url: "getListJalurMasuk.php",
+                      type: "POST",
+                      data: {
+                        jenjang: jenjang,
+                      },
+                      success: function (response) {
+                        const dataList = JSON.parse(response);
 
-                      const jalurMasukOptions = $("#jalur-masuk-options");
-                      jalurMasukOptions.empty();
+                        const jalurMasukOptions = $("#jalur-masuk-options");
+                        jalurMasukOptions.empty();
 
-                      // Proses seluruh data dari dataList
-                      dataList.forEach(function (jalurMasuk) {
-                        // Periksa apakah jalurMasuk ada dalam data valid
-                        const isDisabled = !data.some(function (item) {
-                          return item.jalur_pendaftaran === jalurMasuk.nama_jalur_pendaftaran;
+                        // Proses seluruh data dari dataList
+                        dataList.forEach(function (jalurMasuk) {
+                          // Periksa apakah jalurMasuk ada dalam data valid
+                          const isDisabled = !data.some(function (item) {
+                            return item.jalur_pendaftaran === jalurMasuk.nama_jalur_pendaftaran;
+                          });
+
+                          jalurMasukOptions.append(`
+                            <div>
+                              <input 
+                                type="radio" 
+                                id="jalur-masuk-${jalurMasuk.id_jalur_pendaftaran}" 
+                                name="jalur-masuk" 
+                                value="${jalurMasuk.id_jalur_pendaftaran}" 
+                                class="radio-input"
+                                ${isDisabled ? "disabled" : ""}
+                              >
+                              <label for="jalur-masuk-${jalurMasuk.id_jalur_pendaftaran}" class="radio-label">${jalurMasuk.nama_jalur_pendaftaran}</label>
+                            </div>
+                          `);
                         });
+                      },
+                      error: function (xhr, status, error) {
+                        console.error("Terjadi kesalahan:", error);
+                      },
+                    });
+                  },
+                  error: function (xhr, status, error) {
+                    console.error("Terjadi kesalahan:", error);
+                  },
+                });
+                jalurMasukContainer.removeClass("hidden");
+              }else{
+                $.ajax({
+                  url: 'getJalurMasuk.php',
+                  type: 'POST',
+                  data: {
+                    jenjang: jenjang,
+                    id_prodi: programStudi,
+                    lokasi: lokasiKampus,
+                    periode_pendaftaran: periodePendaftaran,
+                  },
+                  success: function (response) {
+                    const data = JSON.parse(response);
+                  
+                    const jalurMasukOptions = $("#jalur-masuk-options");
+                    jalurMasukOptions.empty();
 
-                        jalurMasukOptions.append(`
-                          <div>
-                            <input 
-                              type="radio" 
-                              id="jalur-masuk-${jalurMasuk.id_jalur_pendaftaran}" 
-                              name="jalur-masuk" 
-                              value="${jalurMasuk.id_jalur_pendaftaran}" 
-                              class="radio-input"
-                              ${isDisabled ? "disabled" : ""}
-                            >
-                            <label for="jalur-masuk-${jalurMasuk.id_jalur_pendaftaran}" class="radio-label">${jalurMasuk.nama_jalur_pendaftaran}</label>
-                          </div>
-                        `);
-                      });
-                    },
-                    error: function (xhr, status, error) {
-                      console.error("Terjadi kesalahan:", error);
-                    },
-                  });
-                },
-                error: function (xhr, status, error) {
-                  console.error("Terjadi kesalahan:", error);
-                },
-              });
-              // END GET JALUR MASUK
-
-              jalurMasukContainer.removeClass("hidden");
+                    // Render input radio langsung dari data
+                    data.forEach(function (item) {
+                      // console.log('jalur', item)
+                      jalurMasukOptions.append(`
+                        <div>
+                          <input 
+                            type="radio" 
+                           id="jalur-masuk-${item.id_jalur_pendaftaran}"  
+                            name="jalur-masuk" 
+                            value="${item.id_jalur_pendaftaran}" 
+                            class="radio-input"
+                          >
+                          <label for="jalur-masuk-${item.id_jalur_pendaftaran}" class="radio-label">${item.jalur_pendaftaran}</label>
+                        </div>
+                      `);
+                    });
+                  }
+                });
+                jalurMasukContainer.removeClass("hidden");
+              }
             } else {
               jalurMasukContainer.addClass("hidden");
             }
