@@ -3,7 +3,7 @@
 if($_GET['dev']){
 
 }else{
-  header("Location: https://paramadina.siakadcloud.com/spmbfront/home");
+  // header("Location: https://paramadina.siakadcloud.com/spmbfront/home");
 }
 
 ?>
@@ -281,6 +281,7 @@ if($_GET['dev']){
               },
               success: function (response) {
                 const data = JSON.parse(response);
+                console.log(data)
                 const allCampuses = ['Cipayung', 'Cikarang', 'Kuningan'];
 
                 const lokasiKampusOptions = $("#lokasi-kampus-options");
@@ -429,7 +430,7 @@ if($_GET['dev']){
               // GET WAKTU PERKULIAHAN,
               if (jenjang == "S1") {
                 $.ajax({
-                  url: 'getWaktuPerkuliahan.php',
+                  url: 'getWaktuPerkuliahanS1.php',
                   type: 'POST',
                   data: {
                     jenjang: jenjang,
@@ -512,7 +513,7 @@ if($_GET['dev']){
                             value="${item.id_periode_pendaftaran}" 
                             class="radio-input"
                           >
-                          <label for="waktu-perkuliahan-${item.id_periode_pendaftaran}" class="radio-label">${item.nama_periode_pendaftaran}</label>
+                          <label for="waktu-perkuliahan-${item.id_periode_pendaftaran}" class="radio-label">${item.nama_periode_pendaftaran} </label>
                         </div>
                       `);
                     });
@@ -673,7 +674,7 @@ if($_GET['dev']){
                   },
                   success: function (response) {
                     const data = JSON.parse(response);
-                  
+                    
                     const jalurMasukOptions = $("#jalur-masuk-options");
                     jalurMasukOptions.empty();
 
@@ -728,7 +729,7 @@ if($_GET['dev']){
             },
             success: function (response) {
               const data = JSON.parse(response);
-              
+             // console.log('tes',data)
               const periodeAkademik = data[0].periode_akademik;
               const gelombang = data[0].id_gelombang;
               const jalurPendaftaran = data[0].id_jalur_pendaftaran;
