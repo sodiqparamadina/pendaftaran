@@ -5,7 +5,8 @@
               $id_prodi = isset($_POST['id_prodi']) ? $_POST['id_prodi'] : '';
               $lokasi = isset($_POST['lokasi']) ? $_POST['lokasi'] : '';
               $periode_pendaftaran = isset($_POST['periode_pendaftaran']) ? $_POST['periode_pendaftaran'] : '';
-             
+
+              // $getNamePeriode = "SELECT * FROM program_studi_dibukas where id_periode_pendaftaran = $periode_pendaftaran";
               $sql = "
                 select *
                 from program_studi_dibukas

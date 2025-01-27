@@ -12,6 +12,7 @@
                 where program_studi_dibukas.jenjang_program_studi like '%$jenjang%'
                 and program_studi_dibukas.id_program_studi = $id_prodi
                 and program_studi_dibukas.sistem_kuliah like '%$lokasi%'
+                group by program_studi_dibukas.nama_periode_pendaftaran order by program_studi_dibukas.nama_periode_pendaftaran ASC
               ";
               $result = mysqli_query($conn, $sql);
                 // Jika query berhasil
