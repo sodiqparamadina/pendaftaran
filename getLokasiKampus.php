@@ -5,11 +5,16 @@
               $id_prodi = isset($_POST['id_prodi']) ? $_POST['id_prodi'] : '';
               // Contoh query
               $sql = "
-                select SUBSTRING_INDEX(SUBSTRING_INDEX(sistem_kuliah, '(', -1), ')', 1) AS lokasi
+                select SUBSTRING_INDEX(SUBSTRING_INDEX(program_studi_dibukas.sistem_kuliah, '(', -1), ')', 1) AS lokasi
                 from program_studi_dibukas
-                where jenjang_program_studi = '$jenjang'
-                and id_program_studi = $id_prodi
-                group by lokasi
+                join periode_pendaftaran on periode_pendaftaran.id = program_studi_dibukas.id_periode_pendaftaran
+                where program_studi_dibukas.jenjang_program_studi = '$jenjang'
+                and program_studi_dibukas.id_program_studi = $id_prodi
+                and id_status_periode_pendaftaran = 'A'
+              
+                
+
+                 
               ";
               $result = mysqli_query($conn, $sql);
                 // Jika query berhasil

@@ -295,6 +295,7 @@ if($_GET['dev']){
               },
               success: function (response) {
                 const data = JSON.parse(response);
+                console.log(data)
                 const allCampuses = ['Cipayung', 'Cikarang', 'Kuningan'];
 
                 const lokasiKampusOptions = $("#lokasi-kampus-options");
@@ -635,7 +636,7 @@ if($_GET['dev']){
                   },
                   success: function (response) {
                     const data = JSON.parse(response);
-                  
+                    
                     const jalurMasukOptions = $("#jalur-masuk-options");
                     jalurMasukOptions.empty();
 
