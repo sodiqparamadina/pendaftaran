@@ -12,7 +12,7 @@
                 where jenjang_program_studi = '$jenjang'
                 and id_program_studi = $id_prodi
                 and sistem_kuliah LIKE '%$lokasi%'
-                and nama_periode_pendaftaran LIKE '%$periode_pendaftaran%'
+                and id_periode_pendaftaran = $periode_pendaftaran
               ";
               $result = mysqli_query($conn, $sql);
                 // Jika query berhasil
