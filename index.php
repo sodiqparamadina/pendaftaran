@@ -531,7 +531,7 @@ if($_GET['dev']){
                             value="${item.id_periode_pendaftaran}" 
                             class="radio-input"
                           >
-                          <label for="waktu-perkuliahan-${item.id_periode_pendaftaran}" class="radio-label">${item.nama_periode_pendaftaran}</label>
+                          <label for="waktu-perkuliahan-${item.id_periode_pendaftaran}" class="radio-label">${item.nama_periode_pendaftaran} ${item.jalur_pendaftaran}</label>
                         </div>
                       `);
                     });
