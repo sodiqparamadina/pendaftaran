@@ -16,10 +16,13 @@
               $sql = "
                 select *
                 from program_studi_dibukas 
-                where program_studi_dibukas.jenjang_program_studi like '%$jenjang%'
-                and program_studi_dibukas.id_program_studi = $id_prodi
-                and program_studi_dibukas.sistem_kuliah like '%$lokasi%'
+                where jenjang_program_studi like '%$jenjang%'
+                and id_program_studi = $id_prodi
+                and sistem_kuliah like '%$lokasi%'
+                $sql_jenis_pendaftaran
+                group by nama_periode_pendaftaran
               ";
+              // var_dump($sql);
               $result = mysqli_query($conn, $sql);
                 // Jika query berhasil
                 if ($result) {
