@@ -693,7 +693,7 @@ if($_GET['dev']){
             },
             success: function (response) {
               const data = JSON.parse(response);
-              
+             // console.log('tes',data)
               const periodeAkademik = data[0].periode_akademik;
               const gelombang = data[0].id_gelombang;
               const jalurPendaftaran = data[0].id_jalur_pendaftaran;
@@ -704,7 +704,7 @@ if($_GET['dev']){
               $("#jalur-dipilih").text(data[0].jalur_pendaftaran);
               $("#gelombang-dipilih").text(data[0].gelombang);
               $("#kampus-dipilih").text(data[0].sistem_kuliah);
-              $("#waktu-kuliah-dipilih").text('oke');
+              $("#waktu-kuliah-dipilih").text(data[0].keterangan);
               $("#tanggal_awal_pendaftaran").text(formatTanggal(data[0].tanggal_awal_pendaftaran));
               $("#tanggal_akhir_pendaftaran").text(formatTanggal(data[0].tanggal_akhir_pendaftaran));
               $("#biaya-dipilih").text(jenjang === "S1" ? "Rp. 300.000" : "Rp. 500.000");
