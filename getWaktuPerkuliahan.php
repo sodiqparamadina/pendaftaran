@@ -4,16 +4,21 @@
             $jenjang = isset($_POST['jenjang']) ? mysqli_real_escape_string($conn, $_POST['jenjang']) : '';
             $id_prodi = isset($_POST['id_prodi']) ? intval($_POST['id_prodi']) : 0;
             $lokasi = isset($_POST['lokasi']) ? $_POST['lokasi'] : '';
+            $jenis_pendaftaran = isset($_POST['jenis_pendaftaran']) ? $_POST['jenis_pendaftaran'] : '';
+
+            if ($jenis_pendaftaran === 'Jalur SMA/SMK') {
+              $sql_jenis_pendaftaran = "and program_studi_dibukas.jalur_pendaftaran != 'Alih Jenjang (D3 ke S1)' and program_studi_dibukas.jalur_pendaftaran != 'Pindahan'";
+            } else {
+              $sql_jenis_pendaftaran = "and program_studi_dibukas.jalur_pendaftaran = '$jenis_pendaftaran'";
+            }
               // Contoh query
               $sql = "
                 select *
                 from program_studi_dibukas 
-                left join periode_pendaftaran 
-                on program_studi_dibukas.id_periode_pendaftaran = periode_pendaftaran.id
-                where program_studi_dibukas.jenjang_program_studi = '$jenjang'
-                and program_studi_dibukas.id_program_studi = $id_prodi
-                and program_studi_dibukas.sistem_kuliah like '%$lokasi%'
-                and periode_pendaftaran.status_periode_pendaftaran = 'Aktif'
+                where jenjang_program_studi = '$jenjang'
+                and id_program_studi = $id_prodi
+                and sistem_kuliah like '%$lokasi%'
+                $sql_jenis_pendaftaran
               ";
               $result = mysqli_query($conn, $sql);
                 // Jika query berhasil
