@@ -5,14 +5,14 @@
               $id_prodi = isset($_POST['id_prodi']) ? $_POST['id_prodi'] : '';
               $lokasi = isset($_POST['lokasi']) ? $_POST['lokasi'] : '';
               $periode_pendaftaran = isset($_POST['periode_pendaftaran']) ? $_POST['periode_pendaftaran'] : '';
-
+             
               $sql = "
                 select *
                 from program_studi_dibukas
                 where jenjang_program_studi = '$jenjang'
                 and id_program_studi = $id_prodi
                 and sistem_kuliah LIKE '%$lokasi%'
-                and jalur_pendaftaran LIKE '%$periode_pendaftaran%'
+                and id_periode_pendaftaran = $periode_pendaftaran
               ";
               $result = mysqli_query($conn, $sql);
                 // Jika query berhasil

@@ -12,13 +12,13 @@
               $sql_jenis_pendaftaran = "and program_studi_dibukas.jalur_pendaftaran = '$jenis_pendaftaran'";
             }
               // Contoh query
+             
               $sql = "
                 select *
                 from program_studi_dibukas 
-                where jenjang_program_studi = '$jenjang'
-                and id_program_studi = $id_prodi
-                and sistem_kuliah like '%$lokasi%'
-                $sql_jenis_pendaftaran
+                where program_studi_dibukas.jenjang_program_studi like '%$jenjang%'
+                and program_studi_dibukas.id_program_studi = $id_prodi
+                and program_studi_dibukas.sistem_kuliah like '%$lokasi%'
               ";
               $result = mysqli_query($conn, $sql);
                 // Jika query berhasil

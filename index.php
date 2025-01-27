@@ -452,9 +452,9 @@ if($_GET['dev']){
             const dataJenisPendaftaran = $(this).data('id-jalur-pendaftaran');
             const programStudi = $("input[name='program-studi']:checked").val();
             const jenjang = $("input[name='jenjang']:checked").val();
-           
+            // console.log('data',programStudi, jenjang, lokasiKampus)
             if (jenisPendaftaran) {
-              // GET WAKTU PERKULIAHAN
+              // GET WAKTU PERKULIAHAN,
               if (jenjang == "S1") {
                 $.ajax({
                   url: 'getWaktuPerkuliahan.php',
@@ -525,7 +525,7 @@ if($_GET['dev']){
                   },
                   success: function (response) {
                     const data = JSON.parse(response);
-                  
+                    // console.log('data',data)
                     const waktuPerkuliahanOptions = $("#waktu-perkuliahan-options");
                     waktuPerkuliahanOptions.empty();
 
@@ -535,12 +535,12 @@ if($_GET['dev']){
                         <div>
                           <input 
                             type="radio" 
-                            id="waktu-perkuliahan-${item.nama_periode_pendaftaran.replace(/\s+/g, '-').toLowerCase()}" 
+                            id="waktu-perkuliahan-${item.id_periode_pendaftaran}" 
                             name="waktu-perkuliahan" 
-                            value="${item.nama_periode_pendaftaran}" 
+                            value="${item.id_periode_pendaftaran}" 
                             class="radio-input"
                           >
-                          <label for="waktu-perkuliahan-${item.nama_periode_pendaftaran.replace(/\s+/g, '-').toLowerCase()}" class="radio-label">${item.nama_periode_pendaftaran}</label>
+                          <label for="waktu-perkuliahan-${item.id_periode_pendaftaran}" class="radio-label">${item.nama_periode_pendaftaran}</label>
                         </div>
                       `);
                     });
@@ -737,6 +737,8 @@ if($_GET['dev']){
           const programStudi = $("input[name='program-studi']:checked").val();
           const alihJenjang = $("input[name='jenis-pendaftaran']:checked").val();
 
+          
+          // console.log(lokasiKampus, jenjang, programStudi, jalurMasuk, waktuPerkuliahan)
           $.ajax({
             url: 'proses.php',
             type: 'POST',
