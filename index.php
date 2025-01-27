@@ -3,7 +3,7 @@
 if($_GET['dev']){
 
 }else{
-  header("Location: https://paramadina.siakadcloud.com/spmbfront/home");
+  // header("Location: https://paramadina.siakadcloud.com/spmbfront/home");
 }
 
 ?>
