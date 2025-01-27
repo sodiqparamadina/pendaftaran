@@ -444,9 +444,9 @@ if($_GET['dev']){
             const dataJenisPendaftaran = $(this).data('id-jalur-pendaftaran');
             const programStudi = $("input[name='program-studi']:checked").val();
             const jenjang = $("input[name='jenjang']:checked").val();
-           
+            // console.log('data',programStudi, jenjang, lokasiKampus)
             if (jenisPendaftaran) {
-              // GET WAKTU PERKULIAHAN
+              // GET WAKTU PERKULIAHAN,
               if (jenjang == "S1") {
                 $.ajax({
                   url: 'getWaktuPerkuliahan.php',
@@ -516,7 +516,7 @@ if($_GET['dev']){
                   },
                   success: function (response) {
                     const data = JSON.parse(response);
-                  
+                    // console.log('data',data)
                     const waktuPerkuliahanOptions = $("#waktu-perkuliahan-options");
                     waktuPerkuliahanOptions.empty();
 
