@@ -281,7 +281,6 @@ if($_GET['dev']){
               },
               success: function (response) {
                 const data = JSON.parse(response);
-                console.log(data)
                 const allCampuses = ['Cipayung', 'Cikarang', 'Kuningan'];
 
                 const lokasiKampusOptions = $("#lokasi-kampus-options");
@@ -544,9 +543,9 @@ if($_GET['dev']){
             const jenjang = $("input[name='jenjang']:checked").val();
             const programStudi = $("input[name='program-studi']:checked").val();
             const lokasiKampus = $("input[name='lokasi-kampus']:checked").val();
+            const periodePendaftaran = $("input[name='waktu-perkuliahan']:checked").val();
 
             if (waktuPerkuliahan) {
-            
               // GET JALUR MASUK
               if (jenjang == "S1") {
                 $.ajax({
@@ -576,11 +575,30 @@ if($_GET['dev']){
                     const excludedNames = [
                       "Alih Jenjang (D3 ke S1)",
                       "Pindahan",
-                      "Jalur SMA/SMK",
+                      // "Jalur SMA/SMK",
                     ];
 
                     // Jalur khusus yang hanya ditampilkan dalam kategori tertentu
                     const specialNames = ["Jalur KIP Prestasi Paramadina", "Beasiswa KIP Kuliah", "Beasiswa Kerjasama Perusahaan"];
+
+                    if (data.some(jalurMasuk => 
+                      (jalurMasuk.jalur_pendaftaran === "Jalur SMA/SMK" || jalurMasuk.jalur_pendaftaran === "Beasiswa Kerjasama Perusahaan") &&
+                      (waktuPerkuliahan === "S1 Kelas B (18.30 - 21.00 WIB) + Online (Sabtu)"
+                      || waktuPerkuliahan === "S1 Kelas C (Sabtu Sesi 1) + Online (On Weekdays)"
+                      || waktuPerkuliahan === "S1 Kelas D (Sabtu sesi 2) + Online (On Weekdays)")
+                    )) {
+                      $("#jalur-beasiswa-inline").hide();
+                    } else if(data.some(jalurMasuk => 
+                      jalurMasuk.jalur_pendaftaran === "Pindahan" && waktuPerkuliahan === "S1 Kelas A (09.45 - 18.00 WIB)")) {
+                      $("#jalur-beasiswa-inline").hide();
+                      $("#jalur-khusus-inline").hide();
+                    } else if (data.some(jalurMasuk => jalurMasuk.jalur_pendaftaran === "Alih Jenjang (D3 ke S1)" && (waktuPerkuliahan === "S1 Kelas B (18.30 - 21.00 WIB) + Online (Sabtu)" || waktuPerkuliahan === "S1 Kelas C (Sabtu Sesi 1) + Online (On Weekdays)" || waktuPerkuliahan === "S1 Kelas D (Sabtu sesi 2) + Online (On Weekdays)"))) {
+                      $("#jalur-beasiswa-inline").hide();
+                      $("#jalur-khusus-inline").hide();
+                    } else {
+                      $("#jalur-beasiswa-inline").show();
+                      $("#jalur-khusus-inline").show()
+                    }
 
                     // Proses seluruh data dari dataList
                     data.forEach(function (jalurMasuk) {
@@ -590,27 +608,17 @@ if($_GET['dev']){
                       || waktuPerkuliahan === "S1 Kelas D (Sabtu sesi 2) + Online (On Weekdays)"))
                       {
                         jalurMasuk.jalur_pendaftaran = "Jalur Tes Potensial Akademik";
-                        $("#jalur-beasiswa-inline").css("display", "none");
-                      } else {
-                        $("#jalur-beasiswa-inline").css("display", "flex");
                       }
 
-                      if (jalurMasuk.jalur_pendaftaran !== "Alih Jenjang (D3 ke S1)" && (waktuPerkuliahan === "S1 Kelas B (18.30 - 21.00 WIB) + Online (Sabtu)")) {
+                      if (jalurMasuk.jalur_pendaftaran === "Pindahan" && 
+                      (waktuPerkuliahan === "S1 Kelas A (09.45 - 18.00 WIB)")) {
                         jalurMasuk.jalur_pendaftaran = "Jalur Tes Potensial Akademik";
-                        // $("#jalur-beasiswa-inline").addClass("hidden");
-                      } else {
-                        // $("#jalur-beasiswa-inline").removeClass("hidden");
+                      }
+                      
+                      if (jalurMasuk.jalur_pendaftaran === "Alih Jenjang (D3 ke S1)" && (waktuPerkuliahan === "S1 Kelas B (18.30 - 21.00 WIB) + Online (Sabtu)" || waktuPerkuliahan === "S1 Kelas C (Sabtu Sesi 1) + Online (On Weekdays)" || waktuPerkuliahan === "S1 Kelas D (Sabtu sesi 2) + Online (On Weekdays)")) {
+                        jalurMasuk.jalur_pendaftaran = "Jalur Tes Potensial Akademik";
                       }
 
-                      if (jalurMasuk.jalur_pendaftaran === "Pindahan" && waktuPerkuliahan === "S1 Kelas A (09.45 - 18.00 WIB)") {
-                        jalurMasuk.jalur_pendaftaran = "Jalur Tes Potensial Akademik";
-                        // $("#jalur-beasiswa-inline").addClass("hidden");
-                        // $("#jalur-khusus-inline").addClass("hidden");
-                      } else {
-                        // $("#jalur-beasiswa-inline").removeClass("hidden");
-                        // $("#jalur-khusus-inline").removeClass("hidden");
-                      }
-                    
                       // Abaikan nama jalur pendaftaran yang ada di excludedNames
                       if (!excludedNames.includes(jalurMasuk.jalur_pendaftaran)) {
                         if (jalurMasuk.jalur_pendaftaran === "Jalur Tes Potensial Akademik") {
@@ -670,7 +678,7 @@ if($_GET['dev']){
                     jenjang: jenjang,
                     id_prodi: programStudi,
                     lokasi: lokasiKampus,
-                    periode_pendaftaran: waktuPerkuliahan,
+                    periode_pendaftaran: periodePendaftaran,
                   },
                   success: function (response) {
                     const data = JSON.parse(response);
@@ -678,8 +686,12 @@ if($_GET['dev']){
                     const jalurMasukOptions = $("#jalur-masuk-options");
                     jalurMasukOptions.empty();
 
+                    $("#jalur-beasiswa-inline").hide();
+                    $("#jalur-khusus-inline").hide();
+                    
                     // Render input radio langsung dari data
                     data.forEach(function (item) {
+                      // console.log('jalur', item)
                       jalurMasukOptions.append(`
                         <div>
                           <input 
@@ -716,16 +728,56 @@ if($_GET['dev']){
           const programStudi = $("input[name='program-studi']:checked").val();
           const jenisPendaftaran = $("input[name='jenis-pendaftaran']:checked").val();
 
-          $.ajax({
-            url: 'prosesS1.php',
+          console.log(jalurMasuk)
+
+          if (jenjang === "S1") {
+            $.ajax({
+              url: 'prosesS1.php',
+              type: 'POST',
+              data: {
+                lokasi: lokasiKampus,
+                jenjang: jenjang,
+                id_prodi: programStudi,
+                id_jalur_pendaftaran: jalurMasuk,
+                nama_periode_pendaftaran: waktuPerkuliahan,
+                jenis_pendaftaran: jenisPendaftaran
+              },
+              success: function (response) {
+                const data = JSON.parse(response);
+
+                const periodeAkademik = data[0].periode_akademik;
+                const gelombang = data[0].id_gelombang;
+                const jalurPendaftaran = data[0].id_jalur_pendaftaran;
+                const sistemKuliah = data[0].id_sistem_kuliah;
+                const idPeriode = data[0].id_periode_pendaftaran;
+  
+                $("#jenjang-dipilih").text(data[0].nama_periode_pendaftaran);
+                $("#jalur-dipilih").text(data[0].jalur_pendaftaran);
+                $("#gelombang-dipilih").text(data[0].gelombang);
+                $("#kampus-dipilih").text(data[0].sistem_kuliah);
+                $("#waktu-kuliah-dipilih").html(truncateText(data[0].keterangan, 150));
+                $("#tanggal_awal_pendaftaran").text(formatTanggal(data[0].tanggal_awal_pendaftaran));
+                $("#tanggal_akhir_pendaftaran").text(formatTanggal(data[0].tanggal_akhir_pendaftaran));
+                $("#biaya-dipilih").text(jenjang === "S1" ? "Rp. 300.000" : "Rp. 500.000");
+                
+                const generatedKey = `${periodeAkademik}/${gelombang}/${jalurPendaftaran}/${sistemKuliah}/${idPeriode}`;
+                $("#key").val(generatedKey);
+                $("#prodipilihan").val(data[0].id_program_studi);
+              },
+              error: function (xhr, status, error) {
+                console.error('Terjadi kesalahan:', error);
+              }
+            });
+          } else {
+            $.ajax({
+            url: 'proses.php',
             type: 'POST',
             data: {
               lokasi: lokasiKampus,
               jenjang: jenjang,
               id_prodi: programStudi,
               id_jalur_pendaftaran: jalurMasuk,
-              nama_periode_pendaftaran: waktuPerkuliahan,
-              jenis_pendaftaran: jenisPendaftaran
+              nama_periode_pendaftaran: waktuPerkuliahan
             },
             success: function (response) {
               const data = JSON.parse(response);
@@ -740,7 +792,7 @@ if($_GET['dev']){
               $("#jalur-dipilih").text(data[0].jalur_pendaftaran);
               $("#gelombang-dipilih").text(data[0].gelombang);
               $("#kampus-dipilih").text(data[0].sistem_kuliah);
-              $("#waktu-kuliah-dipilih").html(truncateText(data[0].keterangan, 150));
+              $("#waktu-kuliah-dipilih").text(data[0].keterangan);
               $("#tanggal_awal_pendaftaran").text(formatTanggal(data[0].tanggal_awal_pendaftaran));
               $("#tanggal_akhir_pendaftaran").text(formatTanggal(data[0].tanggal_akhir_pendaftaran));
               $("#biaya-dipilih").text(jenjang === "S1" ? "Rp. 300.000" : "Rp. 500.000");
@@ -753,6 +805,9 @@ if($_GET['dev']){
               console.error('Terjadi kesalahan:', error);
             }
           });
+
+          cardContainer.removeClass("hidden");
+          }
 
           cardContainer.removeClass("hidden");
         });

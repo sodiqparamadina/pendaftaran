@@ -10,8 +10,10 @@
 
               if ($jenis_pendaftaran === 'Pindahan') {
                 $sql_jenis_pendaftaran = "and program_studi_dibukas.jalur_pendaftaran = 'Pindahan'";
+              } else if ($jenis_pendaftaran === "Alih Jenjang (D3 ke S1)") {
+                $sql_jenis_pendaftaran = "and program_studi_dibukas.jalur_pendaftaran = 'Alih Jenjang (D3 ke S1)'";
               } else {
-                $sql_jenis_pendaftaran = "and program_studi_dibukas.jalur_pendaftaran != 'Pindahan'";
+                $sql_jenis_pendaftaran = "and program_studi_dibukas.jalur_pendaftaran != 'Pindahan' and program_studi_dibukas.jalur_pendaftaran != 'Alih Jenjang (D3 ke S1)'";
               }
              
               $sql = "

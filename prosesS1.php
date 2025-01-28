@@ -16,7 +16,7 @@
               $sql = "
                   SELECT psd.*, pp.tanggal_awal_pendaftaran, pp.tanggal_akhir_pendaftaran, pp.keterangan
                   FROM program_studi_dibukas psd
-                  JOIN periode_pendaftaran pp ON psd.id_periode_pendaftaran = pp.id
+                  LEFT JOIN periode_pendaftaran pp ON psd.id_periode_pendaftaran = pp.id
                   WHERE psd.jenjang_program_studi = '$jenjang'
                   AND psd.id_program_studi = '$id_prodi'
                   AND psd.sistem_kuliah LIKE '%$lokasi%'
