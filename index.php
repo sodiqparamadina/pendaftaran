@@ -509,7 +509,7 @@ if($_GET['dev']){
                             type="radio" 
                             id="waktu-perkuliahan-${item.id_periode_pendaftaran}" 
                             name="waktu-perkuliahan" 
-                            value="${item.id_periode_pendaftaran}" 
+                            value="${item.nama_periode_pendaftaran}" 
                             data-id="${item.nama_periode_pendaftaran}"
                             class="radio-input"
                           >
@@ -772,6 +772,7 @@ if($_GET['dev']){
               }
             });
           } else {
+          console.log('data',lokasiKampus, jenjang, programStudi, jalurMasuk, waktuPerkuliahan)
             $.ajax({
             url: 'proses.php',
             type: 'POST',
@@ -780,7 +781,7 @@ if($_GET['dev']){
               jenjang: jenjang,
               id_prodi: programStudi,
               id_jalur_pendaftaran: jalurMasuk,
-              nama_periode_pendaftaran: namaperiodePendaftaran
+              nama_periode_pendaftaran: waktuPerkuliahan
             },
             success: function (response) {
               const data = JSON.parse(response);
