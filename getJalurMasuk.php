@@ -6,16 +6,19 @@
               $lokasi = isset($_POST['lokasi']) ? $_POST['lokasi'] : '';
               $periode_pendaftaran = isset($_POST['periode_pendaftaran']) ? $_POST['periode_pendaftaran'] : '';
               $nama_periode_pendaftaran = isset($_POST['namaperiodePendaftaran']) ? $_POST['namaperiodePendaftaran'] : '';
-
+              $now = date('Y-m-d');
               // $getNamePeriode = "SELECT * FROM program_studi_dibukas where id_periode_pendaftaran = $periode_pendaftaran";
               $sql = "
-                select *
-                from program_studi_dibukas
-                where jenjang_program_studi = '$jenjang'
-                and id_program_studi = $id_prodi
-                and sistem_kuliah LIKE '%$lokasi%'
-                and nama_periode_pendaftaran LIKE '%$nama_periode_pendaftaran%'
-                ORDER BY jalur_pendaftaran DESC
+                select a.*
+                from program_studi_dibukas a
+                JOIN periode_pendaftaran b ON b.id_sevima=a.id_periode_pendaftaran
+                where a.jenjang_program_studi = '$jenjang'
+                and a.id_program_studi = $id_prodi
+                and a.sistem_kuliah LIKE '%$lokasi%'
+                and a.nama_periode_pendaftaran LIKE '%$nama_periode_pendaftaran%'
+                
+                and b.tanggal_akhir_pendaftaran >= '$now'
+                ORDER BY a.jalur_pendaftaran DESC
               ";
               //and id_periode_pendaftaran = $periode_pendaftaran
               // var_dump($sql);die();
