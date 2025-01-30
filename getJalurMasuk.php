@@ -5,6 +5,7 @@
               $id_prodi = isset($_POST['id_prodi']) ? $_POST['id_prodi'] : '';
               $lokasi = isset($_POST['lokasi']) ? $_POST['lokasi'] : '';
               $periode_pendaftaran = isset($_POST['periode_pendaftaran']) ? $_POST['periode_pendaftaran'] : '';
+              $nama_periode_pendaftaran = isset($_POST['namaperiodePendaftaran']) ? $_POST['namaperiodePendaftaran'] : '';
 
               // $getNamePeriode = "SELECT * FROM program_studi_dibukas where id_periode_pendaftaran = $periode_pendaftaran";
               $sql = "
@@ -13,8 +14,11 @@
                 where jenjang_program_studi = '$jenjang'
                 and id_program_studi = $id_prodi
                 and sistem_kuliah LIKE '%$lokasi%'
-                and id_periode_pendaftaran = $periode_pendaftaran
+                and nama_periode_pendaftaran LIKE '%$nama_periode_pendaftaran%'
+                ORDER BY jalur_pendaftaran DESC
               ";
+              //and id_periode_pendaftaran = $periode_pendaftaran
+              // var_dump($sql);die();
               $result = mysqli_query($conn, $sql);
                 // Jika query berhasil
                 if ($result) {

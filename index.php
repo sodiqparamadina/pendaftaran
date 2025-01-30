@@ -510,6 +510,7 @@ if($_GET['dev']){
                             id="waktu-perkuliahan-${item.id_periode_pendaftaran}" 
                             name="waktu-perkuliahan" 
                             value="${item.id_periode_pendaftaran}" 
+                            data-id="${item.nama_periode_pendaftaran}"
                             class="radio-input"
                           >
                           <label for="waktu-perkuliahan-${item.id_periode_pendaftaran}" class="radio-label">${item.nama_periode_pendaftaran} </label>
@@ -544,7 +545,8 @@ if($_GET['dev']){
             const programStudi = $("input[name='program-studi']:checked").val();
             const lokasiKampus = $("input[name='lokasi-kampus']:checked").val();
             const periodePendaftaran = $("input[name='waktu-perkuliahan']:checked").val();
-
+            const namaperiodePendaftaran = $("input[name='waktu-perkuliahan']:checked").data('id');
+            // alert(namaperiodePendaftaran);
             if (waktuPerkuliahan) {
               // GET JALUR MASUK
               if (jenjang == "S1") {
@@ -679,6 +681,7 @@ if($_GET['dev']){
                     id_prodi: programStudi,
                     lokasi: lokasiKampus,
                     periode_pendaftaran: periodePendaftaran,
+                    namaperiodePendaftaran:namaperiodePendaftaran,
                   },
                   success: function (response) {
                     const data = JSON.parse(response);
@@ -727,7 +730,7 @@ if($_GET['dev']){
           const lokasiKampus = $("input[name='lokasi-kampus']:checked").val();
           const programStudi = $("input[name='program-studi']:checked").val();
           const jenisPendaftaran = $("input[name='jenis-pendaftaran']:checked").val();
-
+          const namaperiodePendaftaran = $("input[name='waktu-perkuliahan']:checked").data('id');
           console.log(jalurMasuk)
 
           if (jenjang === "S1") {
@@ -744,7 +747,7 @@ if($_GET['dev']){
               },
               success: function (response) {
                 const data = JSON.parse(response);
-
+                console.log(data);
                 const periodeAkademik = data[0].periode_akademik;
                 const gelombang = data[0].id_gelombang;
                 const jalurPendaftaran = data[0].id_jalur_pendaftaran;
@@ -777,11 +780,11 @@ if($_GET['dev']){
               jenjang: jenjang,
               id_prodi: programStudi,
               id_jalur_pendaftaran: jalurMasuk,
-              nama_periode_pendaftaran: waktuPerkuliahan
+              nama_periode_pendaftaran: namaperiodePendaftaran
             },
             success: function (response) {
               const data = JSON.parse(response);
-             // console.log('tes',data)
+             console.log('tes',data)
               const periodeAkademik = data[0].periode_akademik;
               const gelombang = data[0].id_gelombang;
               const jalurPendaftaran = data[0].id_jalur_pendaftaran;

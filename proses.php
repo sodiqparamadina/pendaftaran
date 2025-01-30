@@ -19,9 +19,10 @@
                   AND psd.id_program_studi = '$id_prodi'
                   AND psd.sistem_kuliah LIKE '%$lokasi%'
                   AND psd.id_jalur_pendaftaran = '$id_jalur_pendaftaran'
-                  AND psd.id_periode_pendaftaran = $nama_periode_pendaftaran
+                  AND psd.nama_periode_pendaftaran = '$nama_periode_pendaftaran'
               ";
-              // var_dump($sql);
+            //   AND psd.id_periode_pendaftaran = $nama_periode_pendaftaran
+            //   var_dump($sql);die();
               $result = mysqli_query($conn, $sql);
                 // Jika query berhasil
                 if ($result) {
