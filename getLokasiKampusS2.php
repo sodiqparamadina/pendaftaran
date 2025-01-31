@@ -4,6 +4,7 @@
               $jenjang = isset($_POST['jenjang']) ? $_POST['jenjang'] : '';
               $id_prodi = isset($_POST['id_prodi']) ? $_POST['id_prodi'] : '';
               // Contoh query
+              $now = date('Y-m-d');
               $sql = "
                
                 
@@ -13,7 +14,7 @@
                   ON b.id_sevima = a.id_periode_pendaftaran 
                 where a.jenjang_program_studi = '$jenjang' 
                 AND a.id_program_studi = $id_prodi
-                AND b.tanggal_akhir_pendaftaran <= NOW()
+                AND b.tanggal_akhir_pendaftaran >= '$now'
                 GROUP BY lokasi
               ";
               $result = mysqli_query($conn, $sql);
