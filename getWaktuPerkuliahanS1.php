@@ -5,6 +5,7 @@
             $id_prodi = isset($_POST['id_prodi']) ? intval($_POST['id_prodi']) : 0;
             $lokasi = isset($_POST['lokasi']) ? $_POST['lokasi'] : '';
             $jenis_pendaftaran = isset($_POST['jenis_pendaftaran']) ? $_POST['jenis_pendaftaran'] : '';
+            $id_gelombang = isset($_POST['id_gelombang']) ? $_POST['id_gelombang'] : '';
 
             if ($jenis_pendaftaran === 'Jalur SMA/SMK') {
               $sql_jenis_pendaftaran = "and program_studi_dibukas.jalur_pendaftaran != 'Alih Jenjang (D3 ke S1)' and program_studi_dibukas.jalur_pendaftaran != 'Pindahan'";
@@ -19,6 +20,7 @@
                 where program_studi_dibukas.jenjang_program_studi like '%$jenjang%'
                 and program_studi_dibukas.id_program_studi = $id_prodi
                 and program_studi_dibukas.sistem_kuliah like '%$lokasi%'
+                and program_studi_dibukas.id_gelombang = '$id_gelombang'
                 $sql_jenis_pendaftaran
                 group by nama_periode_pendaftaran
               ";
