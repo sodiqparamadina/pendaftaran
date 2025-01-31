@@ -1,12 +1,3 @@
-<?php 
-
-if($_GET['dev']){
-
-}else{
-  // header("Location: https://paramadina.siakadcloud.com/spmbfront/home");
-}
-
-?>
 <!DOCTYPE html>
 <html lang="id">
   <head>
@@ -651,7 +642,8 @@ if($_GET['dev']){
                     data.forEach(function (jalurMasuk) {
 
                       if (jalurMasuk.jalur_pendaftaran === "Jalur SMA/SMK" &&
-                      (waktuPerkuliahan === "S1 Kelas C (Sabtu Sesi 1) + Online (On Weekdays)"
+                      (waktuPerkuliahan === "S1 Kelas B (18.30 - 21.00 WIB) + Online (Sabtu)"
+                      || waktuPerkuliahan === "S1 Kelas C (Sabtu Sesi 1) + Online (On Weekdays)"
                       || waktuPerkuliahan === "S1 Kelas D (Sabtu sesi 2) + Online (On Weekdays)"))
                       {
                         jalurMasuk.jalur_pendaftaran = "Jalur Tes Potensial Akademik";
