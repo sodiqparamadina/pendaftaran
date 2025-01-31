@@ -842,7 +842,7 @@
               
               const generatedKey = `${periodeAkademik}/${gelombang}/${jalurPendaftaran}/${sistemKuliah}/${idPeriode}`;
               $("#key").val(generatedKey);
-              $("#prodipilihan").val(data[0].id_program_studi);
+              $("#prodipilihan").val(idPeriode);
             },
             error: function (xhr, status, error) {
               console.error('Terjadi kesalahan:', error);
