@@ -271,49 +271,95 @@ if($_GET['dev']){
 
 
           if (programStudi) {
-            // GET LOKASI KAMPUS
-            $.ajax({
-              url: 'getLokasiKampus.php',
-              type: 'POST',
-              data: {
-                jenjang: jenjang,
-                id_prodi: programStudi
-              },
-              success: function (response) {
-                const data = JSON.parse(response);
-                const allCampuses = ['Cipayung', 'Cikarang', 'Kuningan'];
+            if(jenjang == 'S1'){
+                $.ajax({
+                  url: 'getLokasiKampus.php',
+                  type: 'POST',
+                  data: {
+                    jenjang: jenjang,
+                    id_prodi: programStudi
+                  },
+                  success: function (response) {
+                    const data = JSON.parse(response);
+                    const allCampuses = ['Cipayung', 'Cikarang', 'Kuningan'];
 
-                const lokasiKampusOptions = $("#lokasi-kampus-options");
-                lokasiKampusOptions.empty();
+                    const lokasiKampusOptions = $("#lokasi-kampus-options");
+                    lokasiKampusOptions.empty();
 
-                // Render semua kampus
-                allCampuses.forEach(function (kampus) {
-                  // Cek apakah kampus ada dalam data yang diterima
-                  const kampusAvailable = data.some(function (lokasiKampus) {
-                    return lokasiKampus.lokasi === kampus;
-                  });
+                    // Render semua kampus
+                    allCampuses.forEach(function (kampus) {
+                      // Cek apakah kampus ada dalam data yang diterima
+                      const kampusAvailable = data.some(function (lokasiKampus) {
+                        return lokasiKampus.lokasi === kampus;
+                      });
 
-                  lokasiKampusOptions.append(`
-                    <div>
-                      <input 
-                        type="radio" 
-                        id="lokasi-kampus-${kampus}" 
-                        name="lokasi-kampus" 
-                        value="${kampus}" 
-                        class="radio-input"
-                        ${kampusAvailable ? '' : 'disabled'}
-                      >
-                      <label for="lokasi-kampus-${kampus}" class="radio-label">${kampus}</label>
-                    </div>
-                  `);
+                      lokasiKampusOptions.append(`
+                        <div>
+                          <input 
+                            type="radio" 
+                            id="lokasi-kampus-${kampus}" 
+                            name="lokasi-kampus" 
+                            value="${kampus}" 
+                            class="radio-input"
+                            ${kampusAvailable ? '' : 'disabled'}
+                          >
+                          <label for="lokasi-kampus-${kampus}" class="radio-label">${kampus}</label>
+                        </div>
+                      `);
+                    });
+                  },
+                  error: function (xhr, status, error) {
+                    console.error('Terjadi kesalahan:', error);
+                  }
                 });
-              },
-              error: function (xhr, status, error) {
-                console.error('Terjadi kesalahan:', error);
-              }
-            });
-            // END GET LOKASI KAMPUS
-            lokasiKampusContainer.removeClass("hidden");
+              // END GET LOKASI KAMPUS
+                lokasiKampusContainer.removeClass("hidden");
+            }else{
+              $.ajax({
+                  url: 'getLokasiKampusS2.php',
+                  type: 'POST',
+                  data: {
+                    jenjang: jenjang,
+                    id_prodi: programStudi
+                  },
+                  success: function (response) {
+                    const data = JSON.parse(response);
+                    const allCampuses = ['Cipayung', 'Cikarang', 'Kuningan'];
+
+                    const lokasiKampusOptions = $("#lokasi-kampus-options");
+                    lokasiKampusOptions.empty();
+
+                    // Render semua kampus
+                    allCampuses.forEach(function (kampus) {
+                      // Cek apakah kampus ada dalam data yang diterima
+                      const kampusAvailable = data.some(function (lokasiKampus) {
+                        return lokasiKampus.lokasi === kampus;
+                      });
+
+                      lokasiKampusOptions.append(`
+                        <div>
+                          <input 
+                            type="radio" 
+                            id="lokasi-kampus-${kampus}" 
+                            name="lokasi-kampus" 
+                            value="${kampus}" 
+                            class="radio-input"
+                            ${kampusAvailable ? '' : 'disabled'}
+                          >
+                          <label for="lokasi-kampus-${kampus}" class="radio-label">${kampus}</label>
+                        </div>
+                      `);
+                    });
+                  },
+                  error: function (xhr, status, error) {
+                    console.error('Terjadi kesalahan:', error);
+                  }
+                });
+              // END GET LOKASI KAMPUS
+                lokasiKampusContainer.removeClass("hidden");
+            }
+           
+           
 
 
             $(
@@ -497,7 +543,7 @@ if($_GET['dev']){
                   },
                   success: function (response) {
                     const data = JSON.parse(response);
-
+                   
                     const waktuPerkuliahanOptions = $("#waktu-perkuliahan-options");
                     waktuPerkuliahanOptions.empty();
 
@@ -545,8 +591,7 @@ if($_GET['dev']){
             const programStudi = $("input[name='program-studi']:checked").val();
             const lokasiKampus = $("input[name='lokasi-kampus']:checked").val();
             const periodePendaftaran = $("input[name='waktu-perkuliahan']:checked").val();
-            const namaperiodePendaftaran = $("input[name='waktu-perkuliahan']:checked").data('id');
-            // alert(namaperiodePendaftaran);
+         
             if (waktuPerkuliahan) {
               // GET JALUR MASUK
               if (jenjang == "S1") {
@@ -681,7 +726,7 @@ if($_GET['dev']){
                     id_prodi: programStudi,
                     lokasi: lokasiKampus,
                     periode_pendaftaran: periodePendaftaran,
-                    namaperiodePendaftaran:namaperiodePendaftaran,
+                 
                   },
                   success: function (response) {
                     const data = JSON.parse(response);
@@ -731,7 +776,7 @@ if($_GET['dev']){
           const programStudi = $("input[name='program-studi']:checked").val();
           const jenisPendaftaran = $("input[name='jenis-pendaftaran']:checked").val();
           const namaperiodePendaftaran = $("input[name='waktu-perkuliahan']:checked").data('id');
-          console.log(jalurMasuk)
+          // console.log('nama',programStudi)
 
           if (jenjang === "S1") {
             $.ajax({
@@ -747,7 +792,7 @@ if($_GET['dev']){
               },
               success: function (response) {
                 const data = JSON.parse(response);
-                console.log(data);
+                // console.log(data);
                 const periodeAkademik = data[0].periode_akademik;
                 const gelombang = data[0].id_gelombang;
                 const jalurPendaftaran = data[0].id_jalur_pendaftaran;
@@ -772,20 +817,22 @@ if($_GET['dev']){
               }
             });
           } else {
-          console.log('data',lokasiKampus, jenjang, programStudi, jalurMasuk, waktuPerkuliahan)
+          // console.log('data',lokasiKampus, jenjang, programStudi, jalurMasuk, waktuPerkuliahan)
             $.ajax({
             url: 'proses.php',
             type: 'POST',
             data: {
               lokasi: lokasiKampus,
-              jenjang: jenjang,
-              id_prodi: programStudi,
-              id_jalur_pendaftaran: jalurMasuk,
-              nama_periode_pendaftaran: waktuPerkuliahan
+                jenjang: jenjang,
+                id_prodi: programStudi,
+                id_jalur_pendaftaran: jalurMasuk,
+                nama_periode_pendaftaran: waktuPerkuliahan,
+                jenis_pendaftaran: jenisPendaftaran
+              // nama_periode_pendaftaran: waktuPerkuliahan
             },
             success: function (response) {
               const data = JSON.parse(response);
-             console.log('tes',data)
+            //  console.log('tes',data)
               const periodeAkademik = data[0].periode_akademik;
               const gelombang = data[0].id_gelombang;
               const jalurPendaftaran = data[0].id_jalur_pendaftaran;

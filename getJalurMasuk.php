@@ -9,16 +9,18 @@
               $now = date('Y-m-d');
               // $getNamePeriode = "SELECT * FROM program_studi_dibukas where id_periode_pendaftaran = $periode_pendaftaran";
               $sql = "
-                select a.*
-                from program_studi_dibukas a
-                JOIN periode_pendaftaran b ON b.id_sevima=a.id_periode_pendaftaran
-                where a.jenjang_program_studi = '$jenjang'
-                and a.id_program_studi = $id_prodi
-                and a.sistem_kuliah LIKE '%$lokasi%'
-                and a.nama_periode_pendaftaran LIKE '%$nama_periode_pendaftaran%'
-                
-                and b.tanggal_akhir_pendaftaran >= '$now'
-                ORDER BY a.jalur_pendaftaran DESC
+               
+                            select a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.sistem_kuliah, '(', -1), ')', 1) AS lokasi  
+            from program_studi_dibukas a
+            JOIN 
+              periode_pendaftaran b 
+              ON b.id_sevima = a.id_periode_pendaftaran 
+            where a.jenjang_program_studi = '$jenjang' 
+            AND a.id_program_studi = $id_prodi
+            AND a.nama_periode_pendaftaran LIKE '%$periode_pendaftaran%'
+            AND b.tanggal_akhir_pendaftaran >= '$now'
+            AND a.sistem_kuliah LIKE '%$lokasi%'
+                          
               ";
               //and id_periode_pendaftaran = $periode_pendaftaran
               // var_dump($sql);die();
