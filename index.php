@@ -472,7 +472,8 @@
                     jenjang: jenjang,
                     id_prodi: programStudi,
                     lokasi: lokasiKampus,
-                    jenis_pendaftaran: jenisPendaftaran
+                    jenis_pendaftaran: jenisPendaftaran,
+                    id_gelombang: gelombang
                   },
                   success: function (response) {
                     const data = JSON.parse(response);
@@ -617,25 +618,41 @@
                     ];
 
                     // Jalur khusus yang hanya ditampilkan dalam kategori tertentu
-                    const specialNames = ["Jalur KIP Prestasi Paramadina", "Beasiswa KIP Kuliah", "Beasiswa Kerjasama Perusahaan"];
+                    const specialNames = ["Beasiswa KIP Kuliah", "Beasiswa Kerjasama Perusahaan"];
+                    const shouldHideJalurBeasiswa = data.some(jalurMasuk => 
+                      (jalurMasuk.jalur_pendaftaran === "Jalur SMA/SMK" || 
+                      jalurMasuk.jalur_pendaftaran === "Beasiswa Kerjasama Perusahaan" || 
+                      jalurMasuk.jalur_pendaftaran === "Pindahan" || 
+                      jalurMasuk.jalur_pendaftaran === "Alih Jenjang (D3 ke S1)") &&
+                      (waktuPerkuliahan === "S1 Kelas B (18.30 - 21.00 WIB) + Online (Sabtu)" || 
+                      waktuPerkuliahan === "S1 Kelas C (Sabtu Sesi 1) + Online (On Weekdays)" || 
+                      waktuPerkuliahan === "S1 Kelas D (Sabtu sesi 2) + Online (On Weekdays)"));
 
-                    if (data.some(jalurMasuk => 
-                      (jalurMasuk.jalur_pendaftaran === "Jalur SMA/SMK" || jalurMasuk.jalur_pendaftaran === "Beasiswa Kerjasama Perusahaan") &&
-                      (waktuPerkuliahan === "S1 Kelas B (18.30 - 21.00 WIB) + Online (Sabtu)"
-                      || waktuPerkuliahan === "S1 Kelas C (Sabtu Sesi 1) + Online (On Weekdays)"
-                      || waktuPerkuliahan === "S1 Kelas D (Sabtu sesi 2) + Online (On Weekdays)")
-                    )) {
+                    const shouldHideJalurKhusus = data.some(jalurMasuk => 
+                      (jalurMasuk.jalur_pendaftaran === "Jalur Tes Potensial Akademik" || 
+                      jalurMasuk.jalur_pendaftaran === "Pindahan" || 
+                      jalurMasuk.jalur_pendaftaran === "Alih Jenjang (D3 ke S1)") &&
+                      waktuPerkuliahan === "S1 Kelas A (09.45 - 18.00 WIB)");
+
+                    const shouldHideBeasiswaInClassA = data.some(jalurMasuk =>
+                      jalurMasuk.jalur_pendaftaran === "Pindahan" && waktuPerkuliahan === "S1 Kelas A (09.45 - 18.00 WIB)");
+
+                    const shouldHideKhususInJenjang = data.some(jalurMasuk =>
+                      jalurMasuk.jalur_pendaftaran === "Alih Jenjang (D3 ke S1)" && 
+                      (waktuPerkuliahan === "S1 Kelas B (18.30 - 21.00 WIB) + Online (Sabtu)" || 
+                      waktuPerkuliahan === "S1 Kelas C (Sabtu Sesi 1) + Online (On Weekdays)" || 
+                      waktuPerkuliahan === "S1 Kelas D (Sabtu sesi 2) + Online (On Weekdays)"));
+
+                    if (shouldHideJalurBeasiswa || shouldHideBeasiswaInClassA) {
                       $("#jalur-beasiswa-inline").hide();
-                    } else if(data.some(jalurMasuk => 
-                      jalurMasuk.jalur_pendaftaran === "Pindahan" && waktuPerkuliahan === "S1 Kelas A (09.45 - 18.00 WIB)")) {
-                      $("#jalur-beasiswa-inline").hide();
-                      $("#jalur-khusus-inline").hide();
-                    } else if (data.some(jalurMasuk => jalurMasuk.jalur_pendaftaran === "Alih Jenjang (D3 ke S1)" && (waktuPerkuliahan === "S1 Kelas B (18.30 - 21.00 WIB) + Online (Sabtu)" || waktuPerkuliahan === "S1 Kelas C (Sabtu Sesi 1) + Online (On Weekdays)" || waktuPerkuliahan === "S1 Kelas D (Sabtu sesi 2) + Online (On Weekdays)"))) {
-                      $("#jalur-beasiswa-inline").hide();
-                      $("#jalur-khusus-inline").hide();
                     } else {
                       $("#jalur-beasiswa-inline").show();
-                      $("#jalur-khusus-inline").show()
+                    }
+
+                    if (shouldHideJalurKhusus || shouldHideKhususInJenjang) {
+                      $("#jalur-khusus-inline").hide();
+                    } else {
+                      $("#jalur-khusus-inline").show();
                     }
 
                     // Proses seluruh data dari dataList
