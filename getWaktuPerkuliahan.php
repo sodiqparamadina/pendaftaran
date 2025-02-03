@@ -4,14 +4,18 @@
             $jenjang = isset($_POST['jenjang']) ? mysqli_real_escape_string($conn, $_POST['jenjang']) : '';
             $id_prodi = isset($_POST['id_prodi']) ? intval($_POST['id_prodi']) : 0;
             $lokasi = isset($_POST['lokasi']) ? $_POST['lokasi'] : '';
-             
+            $now = date('Y-m-d');
               $sql = "
                 select *
-                from program_studi_dibukas 
-                where program_studi_dibukas.jenjang_program_studi like '%$jenjang%'
-                and program_studi_dibukas.id_program_studi = $id_prodi
-                and program_studi_dibukas.sistem_kuliah like '%$lokasi%'
-                group by program_studi_dibukas.nama_periode_pendaftaran order by program_studi_dibukas.nama_periode_pendaftaran ASC
+                from program_studi_dibukas a
+                 JOIN 
+                  periode_pendaftaran b 
+                  ON b.id_sevima = a.id_periode_pendaftaran 
+                where a.jenjang_program_studi like '%$jenjang%'
+                and a.id_program_studi = $id_prodi
+                and a.sistem_kuliah like '%$lokasi%'
+                  AND b.tanggal_akhir_pendaftaran >= '$now'
+                group by a.nama_periode_pendaftaran order by a.nama_periode_pendaftaran ASC
               ";
               // var_dump($sql);
               $result = mysqli_query($conn, $sql);
