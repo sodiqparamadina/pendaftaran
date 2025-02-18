@@ -17,6 +17,11 @@
     <div class="header-container">
       <header class="main-header">
         <div class="header-wrapper">
+          <button class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
           <div class="nav-content">
             <div class="logo-section">
               <img src="images/logo.jpg" alt="Logo" class="logo-img" />
@@ -898,6 +903,11 @@
           }).format(date);
         }
 
+      });
+    </script>
+    <script>
+      document.querySelector('.menu-toggle').addEventListener('click', function() {
+        document.querySelector('.main-nav').classList.toggle('active');
       });
     </script>
   </body>

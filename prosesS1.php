@@ -7,6 +7,7 @@
             $id_jalur_pendaftaran = isset($_POST['id_jalur_pendaftaran']) ? $_POST['id_jalur_pendaftaran'] : '';
             $nama_periode_pendaftaran = isset($_POST['nama_periode_pendaftaran']) ? $_POST['nama_periode_pendaftaran'] : '';
             $jenis_pendaftaran = isset($_POST['jenis_pendaftaran']) ? $_POST['jenis_pendaftaran'] : '';
+            $now = date('Y-m-d');
 
             if ($jenis_pendaftaran === 'Alih Jenjang (D3 ke S1)') {
                 $id_jalur_pendaftaran = 2;
@@ -22,6 +23,7 @@
                   AND psd.sistem_kuliah LIKE '%$lokasi%'
                   AND psd.id_jalur_pendaftaran = '$id_jalur_pendaftaran'
                   AND psd.nama_periode_pendaftaran = '$nama_periode_pendaftaran'
+                  AND pp.tanggal_akhir_pendaftaran >= '$now'
               ";
               $result = mysqli_query($conn, $sql);
                 // Jika query berhasil
