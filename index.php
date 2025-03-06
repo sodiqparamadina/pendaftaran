@@ -77,7 +77,8 @@
       >
         <div>
           <h1 class="text-gelombang" id="text-gelombang"></h1>
-          <p class="text-semester" id="text-semester"></p>
+          <!-- <p class="text-semester" id="text-semester"></p> -->
+           <p class="text-semester">Semester Gasal 2025-2026</p>
         </div>
         <div class="form-radio">
           <!-- Pilih Jenjang -->
@@ -174,11 +175,11 @@
     <script type="module">
       $(document).ready(function () {
         const gelombang = 1;
-        const semesterMulai = "Semester genap 2024";
-        const semesterSelesai = "Semester Ganjil 2025";
+        // const semesterMulai = "Semester Ganjil 2025";
+        // const semesterSelesai = "Semester Genap 2025";
 
         $("#text-gelombang").text(`Gelombang ${gelombang}`);
-        $("#text-semester").text(`${semesterMulai} - ${semesterSelesai}`);
+        // $("#text-semester").text(`${semesterMulai} - ${semesterSelesai}`);
         
         // GET JENJANG
         $.ajax({
