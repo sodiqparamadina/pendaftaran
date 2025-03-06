@@ -63,9 +63,11 @@
     </div>
     <div class="hero-section">
       <div class="hero-content">
-        <h1 class="hero-title">Portal Pendaftaran Mahasiswa Baru</h1>
+        <h1 class="hero-title">
+          Portal Pendaftaran Mahasiswa Baru
+        </h1>
         <p class="hero-subtitle">
-          Formulir pendaftaran mahasiswa baru di Universitas Paramadina.
+          <!-- Formulir pendaftaran mahasiswa baru di Universitas Paramadina. -->
         </p>
       </div>
     </div>
