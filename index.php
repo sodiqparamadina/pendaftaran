@@ -67,7 +67,7 @@
           Portal Pendaftaran Mahasiswa Baru
         </h1>
         <p class="hero-subtitle">
-          <!-- Formulir pendaftaran mahasiswa baru di Universitas Paramadina. -->
+          Formulir pendaftaran mahasiswa baru di Universitas Paramadina.
         </p>
       </div>
     </div>
