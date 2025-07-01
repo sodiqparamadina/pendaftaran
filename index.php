@@ -210,19 +210,16 @@
       </form>
     </div>
 
-    <footer class="footer">
+    <!-- <footer class="footer">
       <div class="footer-content">
         <div class="footer-section">
           <h3>Kampus Cipayung, Jakarta Timur</h3>
           <p>Jl. Raya Mabes Hankam Kav 9,Setu, Cipayung, Jakarta Timur 13880</p>
           <div class="contact-info">
             <div class="contact-item">
-              <!-- <span>Info S1:</span> -->
               <a href="tel:+6281591811190">+62 815-918-1190</a>
-              <!-- <a href="tel:+6281581811186">+62 815-818-1186</a> -->
             </div>
             <div class="contact-item">
-              <!-- <span>Info S2:</span> -->
               <a href="tel:+6281591811185">+62 815-818-1186</a>
             </div>
           </div>
@@ -252,7 +249,7 @@
           </div>
         </div>
       </div>
-    </footer>
+    </footer> -->
 
     <script type="module">
       $(document).ready(function () {
