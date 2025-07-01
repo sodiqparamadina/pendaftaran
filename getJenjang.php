@@ -1,21 +1,39 @@
 <?php
-            require 'config.php';
-            
-              // Contoh query
-              $sql = "
-                select jenjang_program_studi from program_studi_dibukas group by jenjang_program_studi
-              ";
-              $result = mysqli_query($conn, $sql);
-                // Jika query berhasil
-                if ($result) {
-                    // Ambil semua hasil sebagai array multidimensi
-                    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+// Aktifkan error reporting untuk debugging
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-                    // Cetak hasil
-                    echo json_encode($rows); // Mengembalikan dalam format JSON jika ingin digunakan di JavaScript
-                } else {
-                    // Jika query gagal
-                    echo "Query Error: " . mysqli_error($conn);
-                }
-               mysqli_close($conn);
-            ?>
+// Include file konfigurasi koneksi
+require 'config.php';
+
+// Cek koneksi ke database
+if (!$conn) {
+    die("Koneksi ke database gagal: " . mysqli_connect_error());
+}
+
+// SQL query
+$sql = "
+    SELECT jenjang_program_studi 
+    FROM program_studi_dibukas 
+    GROUP BY jenjang_program_studi
+";
+
+// Jalankan query
+$result = mysqli_query($conn, $sql);
+
+// Cek apakah query berhasil
+if ($result) {
+    // Ambil hasil sebagai array asosiatif
+    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    // Tampilkan hasil dalam format JSON
+    echo json_encode($rows);
+} else {
+    // Tampilkan pesan error jika query gagal
+    echo "Query Error: " . mysqli_error($conn);
+}
+
+// Tutup koneksi
+mysqli_close($conn);
+?>
