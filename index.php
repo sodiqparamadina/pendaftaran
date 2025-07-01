@@ -217,13 +217,11 @@
           <p>Jl. Raya Mabes Hankam Kav 9,Setu, Cipayung, Jakarta Timur 13880</p>
           <div class="contact-info">
             <div class="contact-item">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>
               <!-- <span>Info S1:</span> -->
               <a href="tel:+6281591811190">+62 815-918-1190</a>
               <!-- <a href="tel:+6281581811186">+62 815-818-1186</a> -->
             </div>
             <div class="contact-item">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>
               <!-- <span>Info S2:</span> -->
               <a href="tel:+6281591811185">+62 815-818-1186</a>
             </div>
@@ -234,7 +232,7 @@
           <h3>Kampus Kuningan, Jakarta Selatan</h3>
           <p>Trinity Tower Lt. 45, Jalan H R Rasuna Said Kav C22, Blok IIB, Jakarta Selatan 12940</p>
           <div class="contact-info">
-            <p><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg> Info: <a href="tel:+6281591811185">+62 815-918-1185</a></p>
+            <p> Info: <a href="tel:+6281591811185">+62 815-918-1185</a></p>
           </div>
         </div>
 
@@ -242,7 +240,7 @@
           <h3>Kampus Cikarang, Cikarang</h3>
           <p>Distrik 2 Meikarta, Cikarang Bekasi</p>
           <div class="contact-info">
-            <p><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg> Info: <a href="tel:+6281591811192">+62 815-918-1192</a></p>
+            <p> Info: <a href="tel:+6281591811192">+62 815-918-1192</a></p>
           </div>
         </div>
 
