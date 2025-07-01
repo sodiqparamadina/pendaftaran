@@ -210,7 +210,7 @@
       </form>
     </div>
 
-    <!-- <footer class="footer">
+    <footer class="footer">
       <div class="footer-content">
         <div class="footer-section">
           <h3>Kampus Cipayung, Jakarta Timur</h3>
@@ -249,7 +249,7 @@
           </div>
         </div>
       </div>
-    </footer> -->
+    </footer>
 
     <script type="module">
       $(document).ready(function () {
