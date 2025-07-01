@@ -25,6 +25,7 @@
                   AND psd.nama_periode_pendaftaran = '$nama_periode_pendaftaran'
                   AND pp.tanggal_akhir_pendaftaran >= '$now'
               ";
+            //   var_dump($sql);
               $result = mysqli_query($conn, $sql);
                 // Jika query berhasil
                 if ($result) {

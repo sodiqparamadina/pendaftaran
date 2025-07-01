@@ -11,6 +11,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles/style.css" />
+    <link rel="icon" href="images/logo.jpg" type="image/x-icon">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
@@ -24,11 +25,13 @@
           </button>
           <div class="nav-content">
             <div class="logo-section">
-              <img src="images/logo.jpg" alt="Logo" class="logo-img" />
-              <div class="university-name">
-                <span class="admission-text">Penerimaan Mahasiswa Baru</span>
-                <span class="uni-text">Universitas Paramadina</span>
-              </div>
+              <a href="https://paramadina.ac.id/">
+                <img src="images/logo.jpg" alt="Logo" class="logo-img" />
+                <div class="university-name">
+                  <span class="admission-text">Penerimaan Mahasiswa Baru</span>
+                  <span class="uni-text">Universitas Paramadina</span>
+                </div>
+              </a>
             </div>
 
             <nav class="main-nav">
@@ -173,6 +176,52 @@
         </div>
       </form>
     </div>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Kampus Cipayung, Jakarta Timur</h3>
+          <p>Jl. Raya Mabes Hankam Kav 9,Setu, Cipayung, Jakarta Timur 13880</p>
+          <div class="contact-info">
+            <div class="contact-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>
+              <!-- <span>Info S1:</span> -->
+              <a href="tel:+6281591811190">+62 815-918-1190</a>
+              <!-- <a href="tel:+6281581811186">+62 815-818-1186</a> -->
+            </div>
+            <div class="contact-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>
+              <!-- <span>Info S2:</span> -->
+              <a href="tel:+6281591811185">+62 815-818-1186</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Kampus Kuningan, Jakarta Selatan</h3>
+          <p>Trinity Tower Lt. 45, Jalan H R Rasuna Said Kav C22, Blok IIB, Jakarta Selatan 12940</p>
+          <div class="contact-info">
+            <p><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg> Info: <a href="tel:+6281591811185">+62 815-918-1185</a></p>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Kampus Cikarang, Cikarang</h3>
+          <p>Distrik 2 Meikarta, Cikarang Bekasi</p>
+          <div class="contact-info">
+            <p><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg> Info: <a href="tel:+6281591811192">+62 815-918-1192</a></p>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Tentang Kami</h3>
+          <p>Universitas Paramadina berdiri pada 10 Januari 1998. Berusaha menempatkan diri sebagai salah satu pendorong tumbuhnya generasi terbaik Indonesia. Generasi intelektual baru yang memiliki kekuatan dalam aspek Leadership, Entrepreneurship dan Ethics.</p>
+          <div class="contact-info">
+            <p>Email: <a href="mailto:info@paramadina.ac.id">info@paramadina.ac.id</a></p>
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <script type="module">
       $(document).ready(function () {
@@ -390,7 +439,7 @@
               success: function (response) {
                 const data = JSON.parse(response);
 
-                const allJalurPendaftaran = ['Jalur SMA/SMK', 'Pindahan', 'Alih Jenjang (D3 ke S1)'];
+                const allJalurPendaftaran = ['Jalur SMA/SMK', 'Pindahan', 'RPL Transfer SKS', 'RPL Perolehan SKS'];
 
                 const jenisPendaftaranOptions = $("#jenis-pendaftaran-options");
                 jenisPendaftaranOptions.empty();
@@ -543,12 +592,15 @@
                   },
                   success: function (response) {
                     const data = JSON.parse(response);
+
+                    // Filter data untuk tidak mengandung "RPL Perolehan SKS"
+                    const jalurPendaftaran = data.filter((item) => item.jalur_pendaftaran !== "RPL Perolehan SKS");
                    
                     const waktuPerkuliahanOptions = $("#waktu-perkuliahan-options");
                     waktuPerkuliahanOptions.empty();
 
                     // Render input radio langsung dari data
-                    data.forEach(function (item) {
+                    jalurPendaftaran.forEach(function (item) {
                       waktuPerkuliahanOptions.append(`
                         <div>
                           <input 
@@ -559,7 +611,7 @@
                             data-id="${item.nama_periode_pendaftaran}"
                             class="radio-input"
                           >
-                          <label for="waktu-perkuliahan-${item.id_periode_pendaftaran}" class="radio-label">${item.nama_periode_pendaftaran} </label>
+                          <label for="waktu-perkuliahan-${item.id_periode_pendaftaran}" class="radio-label">${item.nama_periode_pendaftaran}</label>
                         </div>
                       `);
                     });
@@ -591,6 +643,19 @@
             const programStudi = $("input[name='program-studi']:checked").val();
             const lokasiKampus = $("input[name='lokasi-kampus']:checked").val();
             const periodePendaftaran = $("input[name='waktu-perkuliahan']:checked").val();
+
+            if ((jenisPendaftaran === "RPL Transfer SKS" || jenisPendaftaran === "RPL Perolehan SKS")
+            &&
+          (waktuPerkuliahan === "S1 Kelas A (09.45 - 18.00 WIB)" || waktuPerkuliahan === "S1 Kelas B (18.30 - 21.00 WIB) + Online (Sabtu)" || waktuPerkuliahan === "S1 Kelas C (Sabtu Sesi 1) + Online (On Weekdays)" || waktuPerkuliahan === "S1 Kelas D (Sabtu sesi 2) + Online (On Weekdays)")) {
+              // Sembunyikan semua opsi jalur masuk kecuali Jalur Tes Potensial Akademik
+              $("#jalur-beasiswa-inline, #jalur-masuk-options-beasiswa, #jalur-khusus-inline, #jalur-masuk-options-khusus").hide();
+              $("#jalur-masuk-options input[type='radio']").not("[value='Jalur Tes Potensial Akademik']").parent().hide();
+              $("#jalur-masuk-options input[value='Jalur Tes Potensial Akademik']").parent().show();
+            } else {
+              // Tampilkan kembali semua opsi jalur masuk
+              $("#jalur-beasiswa-inline, #jalur-masuk-options-beasiswa, #jalur-khusus-inline, #jalur-masuk-options-khusus").show();
+              $("#jalur-masuk-options input[type='radio']").parent().show();
+            }
          
             if (waktuPerkuliahan) {
               // GET JALUR MASUK
@@ -622,6 +687,8 @@
                     const excludedNames = [
                       "Alih Jenjang (D3 ke S1)",
                       "Pindahan",
+                      "RPL Transfer SKS",
+                      "RPL Perolehan SKS"
                       // "Jalur SMA/SMK",
                     ];
 
@@ -678,7 +745,12 @@
                       (waktuPerkuliahan === "S1 Kelas A (09.45 - 18.00 WIB)")) {
                         jalurMasuk.jalur_pendaftaran = "Jalur Tes Potensial Akademik";
                       }
-                      
+
+                      // if (jalurMasuk.jalur_pendaftaran === "RPL Transfer SKS" || 
+                      // (jalurMasuk.jalur_pendaftaran === "RPL Perolehan SKS" && (waktuPerkuliahan === "S1 Kelas A (09.45 - 18.00 WIB)"))) {
+                      //   jalurMasuk.jalur_pendaftaran = "Jalur Tes Potensial Akademik";
+                      // }
+
                       if (jalurMasuk.jalur_pendaftaran === "Alih Jenjang (D3 ke S1)" && (waktuPerkuliahan === "S1 Kelas B (18.30 - 21.00 WIB) + Online (Sabtu)" || waktuPerkuliahan === "S1 Kelas C (Sabtu Sesi 1) + Online (On Weekdays)" || waktuPerkuliahan === "S1 Kelas D (Sabtu sesi 2) + Online (On Weekdays)")) {
                         jalurMasuk.jalur_pendaftaran = "Jalur Tes Potensial Akademik";
                       }
@@ -747,16 +819,17 @@
                   },
                   success: function (response) {
                     const data = JSON.parse(response);
-                    
-                    const jalurMasukOptions = $("#jalur-masuk-options");
+
+                    let jalurMasukOptions = $("#jalur-masuk-options");
                     jalurMasukOptions.empty();
+                    
+                    const jalurPendaftaran = data.filter((item) => item.jalur_pendaftaran !== "RPL Perolehan SKS");
 
                     $("#jalur-beasiswa-inline").hide();
                     $("#jalur-khusus-inline").hide();
                     
                     // Render input radio langsung dari data
-                    data.forEach(function (item) {
-                      // console.log('jalur', item)
+                    jalurPendaftaran.forEach(function (item) {
                       jalurMasukOptions.append(`
                         <div>
                           <input 
@@ -787,13 +860,18 @@
         $(document).on("change", "input[name='jalur-masuk']", function () {
           const cardContainer = $("#card-container");
           const jenjang = $("input[name='jenjang']:checked").val();
-          const jalurMasuk = $("input[name='jalur-masuk']:checked").val();
+          let jalurMasuk = $("input[name='jalur-masuk']:checked").val();
           const waktuPerkuliahan = $("input[name='waktu-perkuliahan']:checked").val();
           const lokasiKampus = $("input[name='lokasi-kampus']:checked").val();
           const programStudi = $("input[name='program-studi']:checked").val();
           const jenisPendaftaran = $("input[name='jenis-pendaftaran']:checked").val();
           const namaperiodePendaftaran = $("input[name='waktu-perkuliahan']:checked").data('id');
-          // console.log('nama',programStudi)
+
+          if (jenisPendaftaran === "RPL Transfer SKS") {
+            jalurMasuk =29;
+          } else if (jenisPendaftaran === "RPL Perolehan SKS") {
+            jalurMasuk = 30;
+          }
 
           if (jenjang === "S1") {
             $.ajax({
@@ -809,13 +887,14 @@
               },
               success: function (response) {
                 const data = JSON.parse(response);
-                // console.log(data);
+
                 const periodeAkademik = data[0].periode_akademik;
                 const gelombang = data[0].id_gelombang;
                 const jalurPendaftaran = data[0].id_jalur_pendaftaran;
+                const namaJalurPendaftaran = data[0].jalur_pendaftaran
                 const sistemKuliah = data[0].id_sistem_kuliah;
                 const idPeriode = data[0].id_periode_pendaftaran;
-  
+
                 $("#jenjang-dipilih").text(data[0].nama_periode_pendaftaran);
                 $("#jalur-dipilih").text(data[0].jalur_pendaftaran);
                 $("#gelombang-dipilih").text(data[0].gelombang);
@@ -823,7 +902,32 @@
                 $("#waktu-kuliah-dipilih").html(truncateText(data[0].keterangan, 150));
                 $("#tanggal_awal_pendaftaran").text(formatTanggal(data[0].tanggal_awal_pendaftaran));
                 $("#tanggal_akhir_pendaftaran").text(formatTanggal(data[0].tanggal_akhir_pendaftaran));
-                $("#biaya-dipilih").text(jenjang === "S1" ? "Rp. 300.000" : "Rp. 500.000");
+                // $("#biaya-dipilih").text(jenjang === "S1" ? "Rp. 300.000" : "Rp. 500.000");
+                let biaya = "Rp. 500.000"; // default biaya untuk non-S1
+
+                if (jenjang === "S1") {
+                  biaya = "Rp. 300.000"; // default S1
+
+                  // pengecekan untuk jalur RPL khusus S1
+                  if (
+                    namaJalurPendaftaran === "RPL Perolehan SKS" ||
+                    namaJalurPendaftaran === "RPL Transfer SKS"
+                  ) {
+                    biaya = "Rp. 600.000";
+                  }
+                } else if (jenjang === "S2") {
+                  biaya = "Rp. 500.000"; // default S2
+
+                  // pengecekan untuk jalur RPL khusus S2
+                  if (
+                    namaJalurPendaftaran === "RPL Perolehan SKS" ||
+                    namaJalurPendaftaran === "RPL Transfer SKS"
+                  ) {
+                    biaya = "Rp. 800.000";
+                  }
+                }
+
+                $("#biaya-dipilih").text(biaya);
                 
                 const generatedKey = `${periodeAkademik}/${gelombang}/${jalurPendaftaran}/${sistemKuliah}/${idPeriode}`;
                 $("#key").val(generatedKey);
@@ -834,7 +938,6 @@
               }
             });
           } else {
-          // console.log('data',lokasiKampus, jenjang, programStudi, jalurMasuk, waktuPerkuliahan)
             $.ajax({
             url: 'proses.php',
             type: 'POST',
@@ -849,12 +952,14 @@
             },
             success: function (response) {
               const data = JSON.parse(response);
-            //  console.log('tes',data)
               const periodeAkademik = data[0].periode_akademik;
               const gelombang = data[0].id_gelombang;
               const jalurPendaftaran = data[0].id_jalur_pendaftaran;
               const sistemKuliah = data[0].id_sistem_kuliah;
               const idPeriode = data[0].id_periode_pendaftaran;
+              const namaJalurPendaftaran = data[0].jalur_pendaftaran
+
+
 
               $("#jenjang-dipilih").text(data[0].nama_periode_pendaftaran);
               $("#jalur-dipilih").text(data[0].jalur_pendaftaran);
@@ -863,7 +968,33 @@
               $("#waktu-kuliah-dipilih").html(truncateText(data[0].keterangan, 150));
               $("#tanggal_awal_pendaftaran").text(formatTanggal(data[0].tanggal_awal_pendaftaran));
               $("#tanggal_akhir_pendaftaran").text(formatTanggal(data[0].tanggal_akhir_pendaftaran));
-              $("#biaya-dipilih").text(jenjang === "S1" ? "Rp. 300.000" : "Rp. 500.000");
+              // $("#biaya-dipilih").text(jenjang === "S1" ? "Rp. 300.000" : "Rp. 500.000");
+
+              let biaya = "Rp. 500.000"; // default biaya untuk non-S1
+
+              if (jenjang === "S1") {
+                biaya = "Rp. 300.000"; // default S1
+
+                // pengecekan untuk jalur RPL khusus S1
+                if (
+                  namaJalurPendaftaran === "RPL Perolehan SKS" ||
+                  namaJalurPendaftaran === "RPL Transfer SKS"
+                ) {
+                  biaya = "Rp. 600.000";
+                }
+              } else if (jenjang === "S2") {
+                biaya = "Rp. 500.000"; // default S2
+
+                // pengecekan untuk jalur RPL khusus S2
+                if (
+                  namaJalurPendaftaran === "RPL Perolehan SKS" ||
+                  namaJalurPendaftaran === "RPL Transfer SKS"
+                ) {
+                  biaya = "Rp. 800.000";
+                }
+              }
+
+              $("#biaya-dipilih").text(biaya);
               
               const generatedKey = `${periodeAkademik}/${gelombang}/${jalurPendaftaran}/${sistemKuliah}/${idPeriode}`;
               $("#key").val(generatedKey);

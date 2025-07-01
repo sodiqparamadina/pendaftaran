@@ -22,7 +22,7 @@
             AND a.id_jalur_pendaftaran = '$id_jalur_pendaftaran'
               ";
             //   AND psd.id_periode_pendaftaran = $nama_periode_pendaftaran
-            //   var_dump($sql);die();
+              // var_dump($sql);die();
               // $result = mysqli_query($conn, $sql);
               //   // Jika query berhasil
               //   if ($result) {

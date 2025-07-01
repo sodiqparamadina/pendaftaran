@@ -7,7 +7,7 @@
               $sql = "
                 select SUBSTRING_INDEX(SUBSTRING_INDEX(program_studi_dibukas.sistem_kuliah, '(', -1), ')', 1) AS lokasi
                 from program_studi_dibukas
-                join periode_pendaftaran on periode_pendaftaran.id = program_studi_dibukas.id_periode_pendaftaran
+                join periode_pendaftaran on periode_pendaftaran.id_sevima = program_studi_dibukas.id_periode_pendaftaran
                 where program_studi_dibukas.jenjang_program_studi = '$jenjang'
                 and program_studi_dibukas.id_program_studi = $id_prodi
                 and id_status_periode_pendaftaran = 'A'                 

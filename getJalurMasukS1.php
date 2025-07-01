@@ -29,6 +29,7 @@
                 and pp.tanggal_akhir_pendaftaran >= '$now'
                 $sql_jenis_pendaftaran
               ";
+              // var_dump($sql);
               $result = mysqli_query($conn, $sql);
                 // Jika query berhasil
                 if ($result) {

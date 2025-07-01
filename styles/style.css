@@ -12,15 +12,16 @@ body {
 }
 
 .card-content {
-  margin: 0 20px; /* Tambahkan margin kiri-kanan */
-  width: auto; /* Biarkan width menyesuaikan dengan margin */
+  margin: 0 20px;
+  width: auto;
   max-width: 100%;
   position: relative;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   background-color: #ffffff;
+  transition: all 0.3s ease;
 }
 
 .required {
@@ -32,7 +33,7 @@ body {
   position: relative;
   min-height: 300px;
   padding: 40px;
-  background-image: url("/images/paramadina.jpg");
+  background-image: url("../images/paramadina.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -113,14 +114,15 @@ select {
   display: flex;
   align-items: center;
   background: white;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 12px 18px;
   cursor: pointer;
   font-size: 0.9rem;
   color: #333;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease-in-out;
+  font-weight: 500;
 }
 
 /* Gaya untuk radio button saat disabled */
@@ -134,6 +136,8 @@ select {
 .radio-label:hover {
   background-color: #f8f9fa;
   border-color: #007bff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Radio button yang sebenarnya (disembunyikan) */
@@ -241,14 +245,25 @@ select {
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 10px 20px;
-  font-size: 0.9rem;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 8px;
+  width: 100%;
+  transition: all 0.2s ease;
+  text-align: center;
 }
 
 .register-btn:hover {
   background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+.register-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 123, 255, 0.2);
 }
 
 .calendar-icon {
@@ -329,12 +344,21 @@ select {
   align-items: center;
   justify-content: space-between;
   padding: 1rem 0;
+  transition: all 0.3s ease;
 }
 
 .logo-section {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.logo-section a {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
 }
 
 .logo-img {
@@ -344,6 +368,7 @@ select {
 }
 
 .university-name {
+  align-items: center;
   display: flex;
   flex-direction: column;
 }
@@ -406,6 +431,14 @@ select {
 
 /* Gaya dasar untuk mobile */
 @media (max-width: 768px) {
+  .header-wrapper {
+    padding: 0 0.5rem;
+  }
+
+  .logo-img {
+    width: 32px;
+    height: 32px;
+  }
   .nav-content {
     flex-direction: column;
     padding: 0.5rem 0;
@@ -423,7 +456,16 @@ select {
     text-align: center;
     gap: 1rem;
     margin-bottom: 1rem;
-    display: none; /* Hidden by default on mobile */
+    display: none;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+  }
+
+  .main-nav.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .login-section {
@@ -468,6 +510,19 @@ select {
     background-color: #333;
     margin: 6px 0;
     transition: 0.4s;
+    transform-origin: center;
+  }
+
+  .menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
   }
 
   /* Adjust hero section padding for mobile */
@@ -479,6 +534,70 @@ select {
   /* Adjust card-content margin for mobile */
   .card-content {
     margin-top: 160px;
+    margin-bottom: 40px;
+  }
+}
+
+.footer {
+  background-color: #f8f9fa;
+  padding: 60px 0;
+  margin-top: 60px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+}
+
+.footer-section h3 {
+  color: #333;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.footer-section p {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.contact-info a {
+  color: #1d8fe1;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contact-info a:hover {
+  color: #0056b3;
+}
+
+.contact-info svg {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 40px 0;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .footer-section {
+    text-align: center;
   }
 }
 

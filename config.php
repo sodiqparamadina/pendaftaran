@@ -11,7 +11,7 @@
 $host = 'lannister.c5jyb00ir1kr.ap-southeast-1.rds.amazonaws.com'; // Nama host database
 $user = 'dcu';      // Username MySQL (default: root)
 $pass = 'K@BP]waY&+';          // Password MySQL (kosong jika default)
-$db   = 'data_central_upm'; // Ganti dengan nama database Anda
+$db   = 'prod_central_upm'; // Ganti dengan nama database Anda
 
 // Membuat koneksi
 $conn = mysqli_connect($host, $user, $pass, $db);
