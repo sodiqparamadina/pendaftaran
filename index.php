@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pendaftaran Mahasiswa Baru Universitas Paramadina 2025 | PMB Online</title>
      <!-- SEO Meta Tags -->
-    <!-- <meta name="description" content="Daftar kuliah di Universitas Paramadina 2025. Portal pendaftaran mahasiswa baru untuk program S1 dan S2. Tersedia berbagai jalur masuk dan beasiswa. Kampus di Jakarta & Cikarang." />
+    <meta name="description" content="Daftar kuliah di Universitas Paramadina 2025. Portal pendaftaran mahasiswa baru untuk program S1 dan S2. Tersedia berbagai jalur masuk dan beasiswa. Kampus di Jakarta & Cikarang." />
     <meta name="keywords" content="pendaftaran universitas paramadina, PMB paramadina 2025, kuliah jakarta, universitas swasta jakarta, pendaftaran S1 S2, beasiswa kuliah, kampus cipayung kuningan cikarang" />
     <meta name="author" content="Universitas Paramadina" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    <meta name="googlebot" content="index, follow" /> -->
+    <meta name="googlebot" content="index, follow" />
     
     <!-- Open Graph Meta Tags (Facebook, LinkedIn, etc.) -->
-    <!-- <meta property="og:type" content="website" />
+    <meta property="og:type" content="website" />
     <meta property="og:title" content="Pendaftaran Mahasiswa Baru Universitas Paramadina 2025" />
     <meta property="og:description" content="Bergabunglah dengan Universitas Paramadina! Daftar sekarang untuk program S1 dan S2. Berbagai jalur masuk tersedia dengan fasilitas modern di 3 kampus." />
     <meta property="og:url" content="https://paramadina.ac.id/pendaftaran" />
@@ -20,22 +20,22 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content="Universitas Paramadina" />
-    <meta property="og:locale" content="id_ID" /> -->
+    <meta property="og:locale" content="id_ID" />
     
     <!-- Twitter Card Meta Tags -->
-    <!-- <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Pendaftaran Mahasiswa Baru Universitas Paramadina 2025" />
     <meta name="twitter:description" content="Portal pendaftaran online Universitas Paramadina. Pilih program studi favorit Anda dan mulai masa depan yang cerah!" />
     <meta name="twitter:image" content="https://paramadina.ac.id/images/logo.jpg" />
-    <meta name="twitter:site" content="@UniParamadina" /> -->
+    <meta name="twitter:site" content="@UniParamadina" />
     
     <!-- Additional SEO Meta Tags -->
-    <!-- <meta name="theme-color" content="#1e40af" />
+    <meta name="theme-color" content="#1e40af" />
     <meta name="msapplication-TileColor" content="#1e40af" />
     <meta name="application-name" content="PMB Universitas Paramadina" />
     <meta name="apple-mobile-web-app-title" content="PMB Paramadina" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" /> -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -43,7 +43,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="/styles/style.css?v=20250701" />
     <link rel="icon" href="images/logo.jpg" type="image/x-icon">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
