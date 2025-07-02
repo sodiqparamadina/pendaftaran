@@ -68,7 +68,7 @@
             </div>
 
             <nav class="main-nav">
-              <a href="#" class="nav-link">Beranda</a>
+              <a href="https://paramadina.ac.id/" class="nav-link">Beranda</a>
               <a href="#" class="nav-link">Jalur Pendaftaran</a>
               <div class="dropdown">
                 <a href="#" class="nav-link">
